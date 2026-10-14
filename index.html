@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Decisiones ganaderas con datos e IA | Datavet</title>
+<meta name="description" content="Los prompts de la charla Decisiones ganaderas basadas en datos e IA: NotebookLM, Gemini y Claude aplicados a la lechería especializada. Cópielos y úselos en su finca.">
+<meta name="author" content="Iván Darío Cifuentes Moreno · Datavet">
+<meta name="theme-color" content="#07193F">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="Datavet">
+<meta property="og:title" content="Decisiones ganaderas basadas en datos e IA | Datavet">
+<meta property="og:description" content="Cuatro casos de inteligencia artificial en lechería, con los prompts listos para copiar.">
+<meta property="og:image" content="https://idacimo.github.io/datavet-ia-lecheria/assets/og-image.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>
+@font-face{font-family:Jost;font-weight:400;font-display:swap;src:url(fonts/jost-latin-400.woff2) format("woff2")}
+@font-face{font-family:Jost;font-weight:500;font-display:swap;src:url(fonts/jost-latin-500.woff2) format("woff2")}
+@font-face{font-family:Jost;font-weight:600;font-display:swap;src:url(fonts/jost-latin-600.woff2) format("woff2")}
+@font-face{font-family:Jost;font-weight:700;font-display:swap;src:url(fonts/jost-latin-700.woff2) format("woff2")}
+:root{--navy:#07193F;--green:#209B6C;--lgreen:#66BE8F;--teal:#26B0B3;--amber:#F5A623;
+  --ink:#1B2333;--muted:#4F5B73;--line:#E0E0E0;--wash:#F1F6F3;--bg:#F4F7F6;--card:#fff;--code:#F7F9F8}
+@media (prefers-color-scheme:dark){:root{--ink:#E8EDF2;--muted:#A9B4C4;--line:#2A3550;--wash:#13233B;--bg:#0B1428;--card:#111D36;--code:#0E1830}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{margin:0;font-family:Jost,system-ui,sans-serif;font-size:17px;line-height:1.5;color:var(--ink);background:var(--bg)}
+a{color:var(--green)}
+header{background:var(--navy);color:#fff;padding:20px 16px 24px}
+header .in,main{max-width:760px;margin:0 auto}
+header img{height:40px;width:auto;display:block;margin-bottom:14px}
+header h1{font-size:1.55rem;line-height:1.2;margin:0 0 6px;font-weight:700}
+header p{margin:0;color:#C9D6E8}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+nav a{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:6px 12px;font-size:.92rem;font-weight:500}
+nav a:hover{background:rgba(255,255,255,.12)}
+main{padding:8px 16px 40px}
+section{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px;margin:18px 0}
+.tag{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--green);border-radius:6px;padding:2px 8px}
+.tag.gem{background:var(--teal)}.tag.gen{background:var(--amber);color:#1B2333}.tag.cla{background:var(--navy)}
+h2{font-size:1.3rem;margin:10px 0 4px;line-height:1.25}
+h3{font-size:1.02rem;margin:18px 0 6px}
+.lead{color:var(--muted);margin:0 0 8px}
+ol.steps{padding-left:1.2em;margin:6px 0 10px}ol.steps li{margin:3px 0}
+.prompt{position:relative;background:var(--code);border:1px solid var(--line);border-left:4px solid var(--green);border-radius:10px;margin:8px 0 6px}
+.prompt pre{margin:0;padding:14px 14px 14px;white-space:pre-wrap;word-wrap:break-word;font-family:Jost,system-ui,sans-serif;font-size:.95rem;line-height:1.45;max-height:340px;overflow:auto}
+.copy{display:flex;align-items:center;gap:6px;margin:0 0 4px auto;font:600 .95rem Jost,system-ui,sans-serif;color:#fff;background:var(--green);border:0;border-radius:8px;padding:10px 16px;cursor:pointer;min-height:44px}
+.copy:active{transform:translateY(1px)}
+.copy.ok{background:var(--navy)}
+.row{display:flex;justify-content:flex-end}
+.note{font-size:.92rem;color:var(--muted);background:var(--wash);border-radius:8px;padding:10px 12px;margin:10px 0 0}
+.btn{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;font-weight:600;border-radius:8px;padding:11px 16px;margin:6px 6px 0 0}
+.btn.alt{background:var(--green)}
+@media (prefers-color-scheme:dark){.btn{background:#1E3A6E}}
+footer{max-width:760px;margin:0 auto;padding:0 16px 40px;font-size:.88rem;color:var(--muted)}
+.pending{opacity:.55;pointer-events:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="in">
+    <img src="assets/logo-datavet-negativo.png" alt="Datavet" width="520" height="176">
+    <h1>Decisiones ganaderas basadas en datos e inteligencia artificial</h1>
+    <p>Los prompts de la charla, listos para copiar y usar con los datos de su finca.</p>
+    <nav aria-label="Secciones">
+      <a href="#c1">1 · NotebookLM</a><a href="#c2">2 · Levante</a><a href="#c3">3 · Genómica</a><a href="#c4">4 · Rentabilidad</a><a href="#teoria">Teoría</a><a href="#app">App reemplazos</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<p class="note"><strong>Cómo usar esta página:</strong> toque <em>Copiar prompt</em>, abra la herramienta indicada, suba sus archivos y pegue el texto. Cambie lo que está entre [corchetes] por los datos de su finca. Nunca suba cédulas, cuentas bancarias ni contraseñas.</p>
+
+<!-- ================= CASO 1 ================= -->
+<section id="c1">
+  <span class="tag">Caso 1 · NotebookLM</span>
+  <h2>El cuaderno de la finca: capacitar al personal y consolidar los informes</h2>
+  <p class="lead">NotebookLM responde <strong>solo</strong> con los documentos que usted le sube. Eso lo hace ideal para enseñar los protocolos propios de la finca y para leer de una vez muchos informes de control lechero.</p>
+  <ol class="steps">
+    <li>Entre a <a href="https://notebooklm.google.com" target="_blank" rel="noopener">notebooklm.google.com</a> con su cuenta de Google y cree un cuaderno nuevo.</li>
+    <li>Suba como fuentes: protocolos de ordeño, manuales, videos de YouTube, y los PDF del control lechero de los últimos 12 meses.</li>
+    <li>Pegue el prompt A o el B en el chat.</li>
+  </ol>
+
+  <h3>Prompt A · Capacitación del personal</h3>
+  <div class="prompt"><pre id="p1a">Actúa como el jefe técnico de una lechería especializada de trópico alto en Colombia. Usa ÚNICAMENTE las fuentes de este cuaderno.
+
+Necesito capacitar a un ordeñador nuevo en la finca [nombre de la finca]. Prepara:
+1. La rutina de ordeño paso a paso, en el orden exacto en que se hace aquí, con el tiempo que debe tomar cada paso.
+2. Los 5 errores más comunes que dañan la calidad de la leche o la salud de la ubre, y cómo evitarlos.
+3. Qué hacer cuando aparece una vaca con mastitis clínica (a quién avisar, cómo marcarla, qué leche se descarta).
+4. Un cuestionario de 10 preguntas de selección múltiple, con las respuestas al final, para evaluar si entendió.
+
+Escríbelo en lenguaje sencillo, como se le explica a un trabajador de finca, sin tecnicismos. Si algo no está en las fuentes, dilo en lugar de inventarlo.</pre></div>
+  <div class="row"><button class="copy" data-target="p1a">Copiar prompt</button></div>
+
+  <h3>Prompt B · Análisis consolidado del control lechero</h3>
+  <div class="prompt"><pre id="p1b">Eres un médico veterinario asesor en calidad de leche y nutrición. En las fuentes están los informes del control lechero de mi finca de los últimos [12] meses.
+
+Haz un análisis consolidado:
+1. Tendencia mes a mes de producción por vaca, grasa, proteína, sólidos totales, recuento de células somáticas (RCS) y MUN. Dime qué mejoró, qué empeoró y desde cuándo.
+2. Salud de ubre: porcentaje de vacas sanas, nuevas infecciones, crónicas y las 10 vacas que más aportan células al tanque. ¿Cuáles repiten mes tras mes?
+3. Nutrición: interpreta la relación grasa/proteína y el MUN por tercio de lactancia (inicio, mitad, final). ¿Hay señales de acidosis, cetosis o exceso de proteína en la dieta?
+4. Las 3 prioridades para los próximos 90 días, con una meta medible para cada una.
+
+Presenta los números en tablas y cita el informe de donde sale cada dato.</pre></div>
+  <div class="row"><button class="copy" data-target="p1b">Copiar prompt</button></div>
+</section>
+
+<!-- ================= CASO 2 ================= -->
+<section id="c2">
+  <span class="tag gem">Caso 2 · Gemini</span>
+  <h2>Levante de terneras: ¿van creciendo al ritmo que deben?</h2>
+  <p class="lead">Con una hoja de pesajes sencilla, Gemini calcula la ganancia diaria de cada animal, arma la curva de crecimiento y le dice cuáles van atrasadas y cuáles ya están listas para servicio.</p>
+  <ol class="steps">
+    <li>Prepare un Excel con dos hojas. <strong>Pesajes:</strong> Número, Peso (kg), Fecha de pesaje. <strong>Nacimientos:</strong> Número, Fecha de nacimiento, Raza.</li>
+    <li>Abra <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a>, adjunte el archivo y pegue el prompt.</li>
+  </ol>
+  <div class="prompt"><pre id="p2">Eres un asesor experto en levante de reemplazos para lechería especializada de trópico alto en Colombia (pastoreo de kikuyo, 2.400 a 2.800 m s. n. m.).
+
+Adjunto un Excel con dos hojas: "Pesajes" (Número, Peso en kg, Fecha de pesaje) y "Nacimientos" (Número, Fecha de nacimiento, Raza: HO = Holstein, F1/F2 = cruces).
+
+Haz lo siguiente:
+1. Une las dos hojas por el número del animal y calcula para cada pesaje: edad en meses y ganancia diaria de peso (GDP, en gramos/día) frente al pesaje anterior. Si no hay peso al nacer, asume 38 kg para Holstein y 35 kg para cruces.
+2. Calcula la GDP total de cada animal desde el nacimiento hasta su último pesaje.
+3. Compara contra estas metas (ajústalas si la raza lo justifica): GDP de 700 a 800 g/día; 200 kg a los 7 meses; 350 a 380 kg (alrededor del 55 % del peso adulto) para el primer servicio a los 14-15 meses; parto a los 24 meses.
+4. Clasifica cada animal con semáforo: VERDE (en meta), AMARILLO (hasta 10 % por debajo), ROJO (más de 10 % por debajo). Señala también los animales con pesajes que bajan o datos que parecen errores de digitación.
+5. Haz una gráfica de peso contra edad con todos los animales y la curva meta superpuesta.
+6. Entrega: (a) tabla resumen ordenada de peor a mejor, (b) lista de novillas listas para servicio hoy, (c) para los animales en ROJO, las causas más probables y 3 acciones concretas de manejo y alimentación.
+
+Explícalo en lenguaje sencillo para el administrador de la finca.</pre></div>
+  <div class="row"><button class="copy" data-target="p2">Copiar prompt</button></div>
+  <p class="note">¿Cuántas terneras y novillas necesita su finca para sostener el hato? Use la calculadora de reemplazos: <a href="https://idacimo.github.io/Reemplazos_Fincas_Lecheras/" target="_blank" rel="noopener">abrir la app</a>.</p>
+</section>
+
+<!-- ================= CASO 3 ================= -->
+<section id="c3">
+  <span class="tag gen">Caso 3 · Genómica</span>
+  <h2>Genómica: decidir con datos cuáles terneras criar</h2>
+  <p class="lead">Ejemplo basado en el proyecto de genómica en las fincas El Cebo, La Gloria y La Esmeralda. Con los resultados de la prueba, la IA ordena las hembras y propone qué hacer con cada grupo.</p>
+  <ol class="steps">
+    <li>Pida al laboratorio los resultados en Excel o CSV (no solo en PDF).</li>
+    <li>Ábralo en el asistente que prefiera (Claude, Gemini o ChatGPT), adjunte el archivo y pegue el prompt.</li>
+  </ol>
+  <div class="prompt"><pre id="p3">Eres un asesor en mejoramiento genético de ganado de leche en trópico alto colombiano.
+
+Adjunto los resultados de la prueba genómica de las terneras y novillas de mi finca. Las columnas incluyen el índice de selección [TPI / NM$ / el que use el laboratorio] y los valores genéticos (PTA) de leche, grasa, proteína, vida productiva, fertilidad de las hijas (DPR), células somáticas (SCS) y tipo, más los genotipos de kappa-caseína y beta-caseína (A2) si están disponibles.
+
+1. Ordena todas las hembras de mayor a menor según el índice y divídelas en cuatro grupos de 25 %.
+2. Propón una decisión para cada grupo: 25 % superior = madres del futuro del hato (semen sexado de toros élite); grupos intermedios = semen convencional; 25 % inferior = semen de raza de carne o venta como novilla.
+3. Compara el promedio genético del hato contra los mejores animales y señala las 2 características más débiles del hato.
+4. Recomienda qué características debe tener el toro para corregir esas debilidades, sin descuidar fertilidad ni salud de ubre.
+5. Calcula cuántas terneras de reemplazo necesitaría realmente con esta estrategia y cuánto dinero se ahorraría en levante al no criar el grupo inferior.
+
+Presenta tablas claras y una explicación corta, en lenguaje de productor. Si falta algún dato, pregúntamelo antes de suponerlo.</pre></div>
+  <div class="row"><button class="copy" data-target="p3">Copiar prompt</button></div>
+</section>
+
+<!-- ================= CASO 4 ================= -->
+<section id="c4">
+  <span class="tag cla">Caso 4 · Claude</span>
+  <h2>Rentabilidad vaca por vaca: de la más rentable a la menos rentable</h2>
+  <p class="lead">Se juntan todos los datos de la finca (producción, calidad, reproducción, sanidad y alimentación) y Claude calcula cuánto deja cada vaca, para tomar decisiones de descarte, tratamiento y alimentación.</p>
+  <ol class="steps">
+    <li>Reúna los archivos: control lechero, eventos reproductivos, tratamientos y sanidad, y plan de concentrado. Tenga a mano el precio del litro y la tabla de bonificaciones de la empresa compradora.</li>
+    <li>Entre a <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>, adjunte los archivos y pegue el prompt.</li>
+  </ol>
+  <div class="prompt"><pre id="p4">Eres un analista de datos y médico veterinario experto en economía de la lechería especializada en Colombia.
+
+Adjunto los registros de mi finca [nombre]: control lechero (producción, grasa, proteína, RCS, días en leche, número de partos), eventos reproductivos (fecha de parto, servicios, preñez, días abiertos), sanidad (mastitis, tratamientos, días de leche descartada) y alimentación (kg de concentrado por vaca al día).
+
+Datos económicos:
+- Precio base del litro: [$ ___]; bonificaciones y descuentos por grasa, proteína y RCS según esta tabla: [pegar tabla].
+- Precio del concentrado: [$ ___ por kg]. Costo de pasto o forraje por vaca al día: [$ ___].
+- Costo de cada día abierto por encima de 120 días: [$ ___] (si no lo sé, propón un valor y explícalo).
+
+Para CADA vaca:
+1. Ingreso estimado por leche en los últimos 12 meses (o por lactancia), con el precio ajustado por su calidad.
+2. Costos directos: concentrado, forraje, tratamientos y leche descartada.
+3. Margen sobre alimentación y margen neto estimado por día.
+4. Penalidades: días abiertos en exceso, RCS alto y mastitis repetida.
+
+Luego:
+5. Ordena las vacas de la más rentable a la menos rentable y clasifícalas en A (top 25 %), B, C y D (25 % inferior).
+6. Para cada grupo, la decisión recomendada: mantener, ajustar alimentación, tratar, revisar reproducción o descartar. Justifica las vacas D una por una.
+7. Muestra el impacto en el margen de la finca si se reemplazan las vacas D.
+
+Antes de calcular, revisa los datos, dime qué falta o se ve inconsistente y escribe los supuestos que usarás. Entrega tablas y una gráfica del margen por vaca.</pre></div>
+  <div class="row"><button class="copy" data-target="p4">Copiar prompt</button></div>
+</section>
+
+<!-- ================= TEORÍA ================= -->
+<section id="teoria">
+  <span class="tag">Para profundizar</span>
+  <h2>Teoría: tipos de inteligencia artificial y principales herramientas</h2>
+  <p class="lead">Un cuaderno de NotebookLM con la teoría de la charla. Hágale preguntas en su propio lenguaje, pida un resumen en audio o un cuestionario.</p>
+  <a class="btn alt" id="nb-link" href="https://notebook.google.com/notebook/6dac1807-e8cf-45e8-a80d-320b47b6ff07" target="_blank" rel="noopener">Abrir «Inteligencia artificial aplicada en la ganadería»</a>
+</section>
+
+<section id="app">
+  <span class="tag">Aplicativo</span>
+  <h2>Plan de reemplazos del hato lechero</h2>
+  <p class="lead">¿Cuántas terneras y novillas necesita su finca? Calcúlelo en 3 pasos y descargue su plan en Excel o PDF. Los datos se quedan en su celular.</p>
+  <a class="btn" href="https://idacimo.github.io/Reemplazos_Fincas_Lecheras/" target="_blank" rel="noopener">Abrir la calculadora</a>
+</section>
+</main>
+
+<footer>
+  Iván Darío Cifuentes Moreno · Datavet — <em>Analizar para innovar, innovar para evolucionar</em><br>
+  ivan.cifuentes@datavet.info · WhatsApp (+57) 315 501 0037
+</footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=document.getElementById(b.dataset.target).innerText;
+    var done=function(){b.textContent='¡Copiado!';b.classList.add('ok');setTimeout(function(){b.textContent='Copiar prompt';b.classList.remove('ok')},2000)};
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done,fallback)}else{fallback()}
+    function fallback(){var a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){}document.body.removeChild(a)}
+  });
+});
+</script>
+</body>
+</html>
