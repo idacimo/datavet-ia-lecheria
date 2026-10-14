@@ -64,13 +64,22 @@ footer{max-width:760px;margin:0 auto;padding:0 16px 40px;font-size:.88rem;color:
     <h1>Decisiones ganaderas basadas en datos e inteligencia artificial</h1>
     <p>Los prompts de la charla, listos para copiar y usar con los datos de su finca.</p>
     <nav aria-label="Secciones">
-      <a href="#c1">1 · NotebookLM</a><a href="#c2">2 · Levante</a><a href="#c3">3 · Genómica</a><a href="#c4">4 · Rentabilidad</a><a href="#teoria">Teoría</a><a href="#app">App reemplazos</a>
+      <a href="#teoria">0 · Teoría</a><a href="#c1">1 · NotebookLM</a><a href="#c2">2 · Levante</a><a href="#c3">3 · Genómica</a><a href="#c4">4 · Rentabilidad</a><a href="#app">App reemplazos</a><a href="#roi">App ROI ordeño</a>
     </nav>
   </div>
 </header>
 
 <main>
 <p class="note"><strong>Cómo usar esta página:</strong> toque <em>Copiar prompt</em>, abra la herramienta indicada, suba sus archivos y pegue el texto. Cambie lo que está entre [corchetes] por los datos de su finca. Nunca suba cédulas, cuentas bancarias ni contraseñas.</p>
+
+<!-- ================= TEORÍA ================= -->
+<section id="teoria">
+  <span class="tag">Paso 0 · Teoría</span>
+  <h2>La IA en 5 minutos: tipos de inteligencia artificial y principales herramientas</h2>
+  <p class="lead">Un cuaderno de NotebookLM con la teoría de la charla. Hágale preguntas en su propio lenguaje, pida un resumen en audio o un cuestionario.</p>
+  <a class="btn alt" id="nb-link" href="https://notebook.google.com/notebook/6dac1807-e8cf-45e8-a80d-320b47b6ff07" target="_blank" rel="noopener">Abrir «Inteligencia artificial aplicada en la ganadería»</a>
+</section>
+
 
 <!-- ================= CASO 1 ================= -->
 <section id="c1">
@@ -190,25 +199,24 @@ Antes de calcular, revisa los datos, dime qué falta o se ve inconsistente y esc
   <div class="row"><button class="copy" data-target="p4">Copiar prompt</button></div>
 </section>
 
-<!-- ================= TEORÍA ================= -->
-<section id="teoria">
-  <span class="tag">Para profundizar</span>
-  <h2>Teoría: tipos de inteligencia artificial y principales herramientas</h2>
-  <p class="lead">Un cuaderno de NotebookLM con la teoría de la charla. Hágale preguntas en su propio lenguaje, pida un resumen en audio o un cuestionario.</p>
-  <a class="btn alt" id="nb-link" href="https://notebook.google.com/notebook/6dac1807-e8cf-45e8-a80d-320b47b6ff07" target="_blank" rel="noopener">Abrir «Inteligencia artificial aplicada en la ganadería»</a>
-</section>
-
 <section id="app">
   <span class="tag">Aplicativo</span>
   <h2>Plan de reemplazos del hato lechero</h2>
   <p class="lead">¿Cuántas terneras y novillas necesita su finca? Calcúlelo en 3 pasos y descargue su plan en Excel o PDF. Los datos se quedan en su celular.</p>
   <a class="btn" href="https://idacimo.github.io/Reemplazos_Fincas_Lecheras/" target="_blank" rel="noopener">Abrir la calculadora</a>
 </section>
+
+<section id="roi">
+  <span class="tag">Aplicativo</span>
+  <h2>Retorno de la inversión en la automatización del ordeño</h2>
+  <p class="lead">¿Vale la pena automatizar el ordeño de su finca? Simule la inversión con sus vacas, litros y precios, y vea el ahorro en electricidad, tiempo, concentrado y mastitis, el VPN y en cuántos años recupera la inversión.</p>
+  <a class="btn" id="roi-link" href="https://idacimo.github.io/Roi-automatizacion/" target="_blank" rel="noopener">Abrir el simulador de ROI</a>
+</section>
 </main>
 
 <footer>
   Iván Darío Cifuentes Moreno · Datavet — <em>Analizar para innovar, innovar para evolucionar</em><br>
-  ivan.cifuentes@datavet.info · WhatsApp (+57) 315 501 0037
+  ivan.cifuentes@datavet.info · idacimo@gmail.com · WhatsApp (+57) 315 501 0037
 </footer>
 
 <script>

@@ -6,14 +6,16 @@ Página de apoyo de la charla **Decisiones ganaderas basadas en datos e IA**: lo
 
 | Ancla | Contenido |
 |---|---|
+| `#teoria` | Paso 0 · Cuaderno «Inteligencia artificial aplicada en la ganadería» |
 | `#c1` | Caso 1 · NotebookLM: capacitación y control lechero consolidado |
 | `#c2` | Caso 2 · Gemini: levante de terneras |
 | `#c3` | Caso 3 · Genómica: qué terneras criar |
 | `#c4` | Caso 4 · Claude: rentabilidad vaca por vaca |
-| `#teoria` | Cuaderno «Inteligencia artificial aplicada en la ganadería» |
 | `#app` | Calculadora de reemplazos |
+| `#roi` | Simulador ROI de la automatización del ordeño |
+| — | La app ROI vive en su propio repositorio: https://idacimo.github.io/Roi-automatizacion/ |
 
-Los QR de la ficha impresa apuntan a estas anclas: **no cambie los nombres de las anclas** ni el nombre del repositorio sin regenerar la ficha (`ficha/ficha_charla_ia.py`).
+Los QR de la ficha impresa apuntan a estas anclas: **no cambie los nombres de las anclas** ni el nombre del repositorio sin regenerar la ficha (`python ficha/ficha_charla_ia.py ficha/salida ficha ficha/fonts`).
 
 ## Publicar
 Repositorio público → Settings → Pages → Deploy from a branch → `main` / `(root)`.
