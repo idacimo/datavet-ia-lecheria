@@ -130,7 +130,7 @@ Ilustraciones de finca lechera, vacas Holstein, números grandes, poco texto. Us
 
   <h3>Prompt D · Todo en Excel</h3>
   <p>En el mismo chat, justo después del prompt A (y del B, si lo usó). Gemini Notebook arma el archivo con todo lo que ya respondió y usted lo descarga. Cuando llegue una colilla nueva, súbala como fuente y repita A y D.</p>
-  <div class="prompt"><pre id="p1e">Genera toda la información que ya entregaste en un archivo de Excel.</pre></div>
+  <div class="prompt"><pre id="p1e">Genera toda la información que ya entregaste en un archivo de Excel, con las gráficas dentro del Excel (gráficas nativas de Excel, no imágenes).</pre></div>
   <div class="row"><button class="copy" data-target="p1e">Copiar prompt</button></div>
 
   <h3>Otros usos del cuaderno de las colillas</h3>
@@ -152,7 +152,7 @@ Ilustraciones de finca lechera, vacas Holstein, números grandes, poco texto. Us
   <ol class="steps">
     <li>Prepare un Excel con dos hojas. <strong>Pesajes:</strong> Fecha de pesaje, Número, Peso (kg), Observación, en el orden en que se pesa. <strong>Nacimientos:</strong> Número, Fecha de nacimiento, Raza (HO, F1, F2, JE).</li>
     <li>Abra <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a>, adjunte el archivo y pegue el prompt A. Las curvas de peso ideal van dentro del prompt: son valores de referencia, no hacen falta en el Excel. Si usa otras curvas, cambie esos números.</li>
-    <li>Cada vez que pese, en el mismo chat: adjunte el Excel del pesaje nuevo y pegue el prompt B, o tómele foto a la planilla escrita a mano y pegue el prompt C.</li>
+    <li>Cada vez que pese, en el mismo chat, use <strong>una</strong> de las dos opciones según cómo anotó el pesaje: si lo pasó a Excel, adjunte el archivo y pegue el <strong>prompt B</strong>; si quedó en la planilla escrita a mano, tómele foto y pegue el <strong>prompt C</strong>.</li>
   </ol>
   <h3>Prompt A · Informe del levante y el último pesaje</h3>
   <div class="prompt"><pre id="p2">Eres un asesor experto en levante de reemplazos para lechería especializada de trópico alto en Colombia.
@@ -182,25 +182,26 @@ Haz lo siguiente, en este orden:
 5. Haz una gráfica de peso contra edad con todos los pesajes, las curvas ideales de cada raza (Holstein, F1 y Jersey), y los animales con problemas resaltados.
 6. Cierra con 3 a 5 acciones concretas para esta semana: qué animales revisar primero, a cuáles volver a pesar y qué ajustar en alimentación o manejo.
 
-7. Al final, genera un archivo de Excel para descargar con toda la información que entregaste: una hoja con todos los pesajes y sus cálculos, una con el último pesaje de cada animal, una con los animales con problemas y una con el resumen del lote.
+7. Al final, genera un archivo de Excel para descargar con toda la información que entregaste: una hoja con todos los pesajes y sus cálculos, una con el último pesaje de cada animal, una con los animales con problemas y una con el resumen del lote. Incluye dentro del Excel las gráficas (gráficas nativas de Excel, no imágenes): peso contra edad con las curvas ideales por raza, y GDP del último intervalo por animal.
 
 Usa solo los datos del archivo, no inventes cifras. Escríbelo en lenguaje sencillo para el administrador de la finca, con tablas claras.</pre></div>
   <div class="row"><button class="copy" data-target="p2">Copiar prompt</button></div>
-  <h3>Prompt B · Agregar un pesaje nuevo</h3>
+  <h3>Prompt B · Pesaje nuevo en Excel</h3>
   <div class="prompt"><pre id="p2b">Adjunto los pesajes nuevos del [fecha] (Fecha de pesaje, Número, Peso en kg, Observación). Antes de agregarlos, revísalos y dime:
 1. Qué animales pesados NO aparecen en la hoja «Nacimientos» (no tienen fecha de nacimiento ni raza) y cuáles números parecen mal escritos (no existen o están repetidos). Para esos, pídeme la fecha de nacimiento y la raza antes de calcularlos.
 2. Qué animales de «Nacimientos» debían pesarse y no aparecen en este pesaje.
 3. Qué pesos parecen errores de digitación frente al pesaje anterior (ganancia o pérdida de más de 1.500 g/día, o un peso imposible para su edad).
 
 Después, agrega los pesajes que estén bien a la historia y repite el análisis completo con las mismas curvas ideales y los mismos pasos: el último pesaje de cada animal, la tabla «Animales con problemas en el último pesaje» ordenada por urgencia, el resumen del lote por raza, la gráfica y las acciones para esta semana.
-Al final, genera el Excel actualizado con toda la información y una hoja «Pendientes por verificar» con lo que encontraste en los puntos 1 a 3.</pre></div>
+Al final, genera el Excel actualizado con toda la información, las gráficas dentro del Excel (gráficas nativas de Excel, no imágenes) y una hoja «Pendientes por verificar» con lo que encontraste en los puntos 1 a 3.</pre></div>
   <div class="row"><button class="copy" data-target="p2b">Copiar prompt</button></div>
-  <h3>Prompt C · El pesaje en la planilla escrita a mano</h3>
+  <h3>Prompt C · Pesaje nuevo en planilla escrita a mano (en lugar del B)</h3>
   <div class="prompt"><pre id="p2c">Adjunto las fotos de la planilla de pesaje escrita a mano del [fecha]. Por favor:
-1. Transcribe la planilla a una tabla con Número, Peso (kg) y Observación, en el mismo orden de la hoja.
-2. Marca con «¿?» todo lo que no se lea con claridad, lo que esté tachado o corregido, y los números de animal que no existan en la hoja «Nacimientos». No adivines: pregúntame esos datos.
-3. Muéstrame la tabla para que la revise antes de usarla.
-Cuando te confirme la tabla, agrégala como pesaje nuevo y sigue los mismos pasos de revisión, análisis y Excel actualizado que usamos para los pesajes nuevos.</pre></div>
+1. Transcribe la planilla a una tabla con Fecha de pesaje, Número, Peso (kg) y Observación, en el mismo orden de la hoja.
+2. Marca con «¿?» todo lo que no se lea con claridad o esté tachado o corregido. No adivines: pregúntame esos datos.
+3. Revisa y dime: qué animales pesados NO aparecen en la hoja «Nacimientos» (pídeme su fecha de nacimiento y raza), qué animales de «Nacimientos» no se pesaron, y qué pesos parecen errores frente al pesaje anterior (ganancia o pérdida de más de 1.500 g/día, o un peso imposible para su edad).
+4. Muéstrame la tabla para que la confirme. Cuando la confirme, agrega los pesajes que estén bien a la historia y repite el análisis completo con las mismas curvas ideales: el último pesaje de cada animal, la tabla «Animales con problemas en el último pesaje» ordenada por urgencia, el resumen del lote por raza, la gráfica y las acciones para esta semana.
+5. Genera el Excel actualizado con toda la información, las gráficas dentro del Excel (gráficas nativas de Excel, no imágenes), una hoja con la planilla transcrita y una hoja «Pendientes por verificar».</pre></div>
   <div class="row"><button class="copy" data-target="p2c">Copiar prompt</button></div>
   <p class="note">¿Cuántas terneras y novillas necesita su finca para sostener el hato? Use la calculadora de reemplazos: <a href="https://idacimo.github.io/Reemplazos_Fincas_Lecheras/" target="_blank" rel="noopener">abrir la app</a>.</p>
 </section>
