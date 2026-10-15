@@ -85,36 +85,50 @@ footer{max-width:760px;margin:0 auto;padding:0 16px 40px;font-size:.88rem;color:
 <section id="c1">
   <span class="tag">Caso 1 · Gemini Notebook</span>
   <h2>Las colillas de leche: ¿estoy obteniendo el mejor precio por mi leche o puede mejorar?</h2>
-  <p class="lead">Gemini Notebook (antes NotebookLM) responde <strong>solo</strong> con los documentos que usted le sube. Con las colillas de pago de un año, le muestra mes a mes de dónde sale el precio de su litro y cuánta plata está dejando sobre la mesa.</p>
+  <p class="lead">Gemini Notebook (antes NotebookLM) responde <strong>solo</strong> con los documentos que usted le sube. Con las colillas semanales que envía Colanta, le muestra semana a semana de dónde sale el precio de su litro, dónde está perdiendo plata y qué deben cuidar los trabajadores.</p>
   <ol class="steps">
     <li>Entre a <a href="https://notebooklm.google.com" target="_blank" rel="noopener">Gemini Notebook</a> con su cuenta de Google y cree un cuaderno nuevo.</li>
-    <li>Suba como fuentes las colillas de pago de la leche de los últimos 12 meses (PDF o fotos claras) y la tabla de bonificaciones y descuentos de su empresa compradora.</li>
-    <li>Pegue el prompt A. Cuando tenga el análisis, pegue el prompt B.</li>
+    <li>Suba como fuentes las colillas semanales de pago de la leche, tal como llegan de Colanta (PDF). Con 3 meses (unas 13 semanas) ya se ven tendencias.</li>
+    <li>Pegue el prompt A en el chat y después el B. Para el prompt C, abra el panel <strong>Studio</strong>, elija <strong>Infografía</strong>, toque el lápiz para personalizarla y pegue el texto.</li>
   </ol>
 
   <h3>Prompt A · ¿De dónde sale el precio de mi litro?</h3>
-  <div class="prompt"><pre id="p1a">Eres un asesor experto en calidad de leche y en el sistema de pago de leche al productor en Colombia. Usa ÚNICAMENTE las fuentes de este cuaderno: las colillas de pago de mi finca [nombre] de los últimos [12] meses y la tabla de bonificaciones de la empresa.
+  <div class="prompt"><pre id="p1a">Eres un asesor experto en calidad de leche y en el sistema de pago de leche al productor en Colombia. Usa ÚNICAMENTE las fuentes de este cuaderno: las colillas semanales de liquidación de leche de mi finca.
 
-1. Arma una tabla mes a mes con: litros entregados, precio base, bonificación o descuento por grasa, proteína (o sólidos totales), calidad higiénica (UFC), células somáticas (RCS), frío, buenas prácticas, hato libre (brucelosis y tuberculosis), volumen y otras bonificaciones, descuentos (transporte, cuota de fomento, préstamos, insumos) y precio final pagado por litro.
-2. Dime en qué meses recibí el mejor y el peor precio, y qué explica la diferencia.
-3. Compara cada componente contra el máximo que paga la tabla de la empresa: ¿en cuáles estoy recibiendo todo y en cuáles estoy perdiendo plata?
-4. Calcula cuánto dinero dejé de recibir en el año por cada componente donde no estuve en el rango máximo.
+1. Arma una tabla semana a semana con: litros entregados, precio por litro, precio pagado menos flete, proteína y grasa (en % y en gramos por litro), recuento de células somáticas (RCS), UFC (bacterias), temperatura promedio y el valor de cada bonificación (recuento bacterial, frío, hato libre, capitalización, células somáticas y las demás que aparezcan).
+2. Dime en qué semanas recibí el mejor y el peor precio por litro y qué explica la diferencia, componente por componente.
+3. Muestra la tendencia del período: ¿el precio sube, baja o se mantiene? ¿Cuál componente está moviendo el precio?
+4. Calcula cuánto dinero dejé de recibir en el período por cada componente que bajó frente a mi mejor semana.
 
-Presenta los números en tablas, cita la colilla de donde sale cada dato y, si algo no está en las fuentes, dilo en lugar de inventarlo.</pre></div>
+Presenta los números en tablas, cita la semana de donde sale cada dato y, si algo no está en las colillas, dilo en lugar de inventarlo.</pre></div>
   <div class="row"><button class="copy" data-target="p1a">Copiar prompt</button></div>
 
-  <h3>Prompt B · ¿Cómo mejoro el precio?</h3>
+  <h3>Prompt B · ¿Estoy obteniendo el mejor precio o puede mejorar?</h3>
   <div class="prompt"><pre id="p1b">Con el análisis anterior, responde: ¿estoy obteniendo el mejor precio por mi leche o puede mejorar?
 
-1. Ordena las oportunidades de mayor a menor plata al año.
-2. Para las 3 primeras, explica en lenguaje sencillo qué tendría que cambiar en la finca (rutina de ordeño, limpieza del equipo, enfriamiento, alimentación, salud de ubre, certificaciones) y en cuánto tiempo se vería en la colilla.
-3. Dime qué dato debo revisar cada mes en la colilla para saber si voy mejorando.
+1. Ordena las oportunidades de mayor a menor plata al año (proyecta el período a 52 semanas).
+2. Para las 3 primeras, explica en lenguaje sencillo qué tendría que cambiar en la finca (alimentación, rutina de ordeño, limpieza del equipo, enfriamiento, salud de ubre) y en cuántas semanas se vería en la colilla.
+3. Dime qué 3 datos debo mirar cada semana en la colilla para saber si voy mejorando, y cuál es la meta de cada uno.
 
 Entrégalo como un plan corto de una página, con una meta medible para cada oportunidad.</pre></div>
   <div class="row"><button class="copy" data-target="p1b">Copiar prompt</button></div>
 
+  <h3>Prompt C · Infografía para los trabajadores: UFC y células somáticas</h3>
+  <p>Para el panel Studio → Infografía → personalizar. Imprímala y péguela en la sala de ordeño.</p>
+  <div class="prompt"><pre id="p1c">Haz una infografía vertical para los ordeñadores de la finca, en español sencillo, con letra grande y pocos textos, sobre dos datos de las colillas de leche: UFC (bacterias) y RCS (células somáticas).
+
+1. Arriba, un título corto: «Leche limpia y vacas sanas = mejor precio».
+2. Dos bloques, uno para cada dato:
+   - UFC: qué es en palabras simples (bacterias que entran por suciedad o falta de frío), cómo nos fue en las últimas semanas según las colillas y la meta.
+   - RCS: qué es en palabras simples (señal de mastitis en la ubre), cómo nos fue en las últimas semanas según las colillas y la meta.
+3. Para cada bloque, 4 acciones del día a día en el ordeño, con un ícono cada una (por ejemplo: despunte y presellado, secar cada pezón con toalla individual, sellado después de ordeñar, lavar el equipo y enfriar la leche rápido).
+4. Abajo, cuánto vale para la finca: la bonificación que pagan por recuento bacterial y por células somáticas según las colillas, y que el trabajo de cada ordeño se ve en la colilla de la semana.
+
+Usa solo cifras que estén en las fuentes. Colores verde para lo que va bien y rojo solo para lo que hay que corregir.</pre></div>
+  <div class="row"><button class="copy" data-target="p1c">Copiar prompt</button></div>
+
   <h3>Otros usos del cuaderno de la finca</h3>
-  <div class="prompt"><pre id="p1c">Actúa como el jefe técnico de una lechería especializada de trópico alto en Colombia. Usa ÚNICAMENTE las fuentes de este cuaderno (protocolos de ordeño, manuales e informes de control lechero).
+  <div class="prompt"><pre id="p1d">Actúa como el jefe técnico de una lechería especializada de trópico alto en Colombia. Usa ÚNICAMENTE las fuentes de este cuaderno (protocolos de ordeño, manuales e informes de control lechero).
 
 Necesito capacitar a un ordeñador nuevo en la finca [nombre de la finca]. Prepara:
 1. La rutina de ordeño paso a paso, en el orden exacto en que se hace aquí.
@@ -123,7 +137,7 @@ Necesito capacitar a un ordeñador nuevo en la finca [nombre de la finca]. Prepa
 4. Un cuestionario de 10 preguntas de selección múltiple, con las respuestas al final.
 
 Escríbelo en lenguaje sencillo, sin tecnicismos. Si algo no está en las fuentes, dilo en lugar de inventarlo.</pre></div>
-  <div class="row"><button class="copy" data-target="p1c">Copiar prompt</button></div>
+  <div class="row"><button class="copy" data-target="p1d">Copiar prompt</button></div>
 </section>
 
 <!-- ================= CASO 2 ================= -->
