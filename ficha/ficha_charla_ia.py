@@ -239,7 +239,7 @@ def front(c, y0, mono=False):
     c.setFont("Jost-M", 7.6); c.setFillColor(K)
     c.drawString(lx + dl + 2.5 * mm, ty, SLOGAN)
     c.setFont("Jost", 7); c.setFillColor(K80)
-    c.drawRightString(W - PAD - 1.5 * mm, ty, "idacimo.github.io/datavet-ia-lecheria")
+    c.drawRightString(W - PAD - 1.5 * mm, ty, SITE)
 
 # ====================================================================== REVERSO (láser)
 IAS = [
@@ -332,6 +332,11 @@ def back(c, y0):
         c.setFont("Jost-B", 7.4); c.setFillColor(K); c.drawString(qx, y - qs - 3.2 * mm, t1)
         c.setFont("Jost", 6.5); c.setFillColor(K80); c.drawString(qx, y - qs - 6 * mm, t2)
     y -= qs + 9.5 * mm
+    for u in (APP_REEMPLAZOS, APP_ROI):                 # dirección completa, por si el QR no lee
+        fz = 6.4
+        while c.stringWidth(u, "Jost", fz) > cw and fz > 5: fz -= 0.1
+        c.setFont("Jost", fz); c.setFillColor(K); c.drawString(cx, y + 0.6 * mm, u); y -= 3 * mm
+    y -= 3.2 * mm
     c.setFont("Jost-B", 7.4); c.setFillColor(K); c.drawString(cx, y, "Mi compromiso: el primer dato")
     c.drawString(cx, y - 3.4 * mm, "que voy a organizar es")
     c.setStrokeColor(K); c.setLineWidth(0.6); c.line(cx, y - 8.5 * mm, cx + cw, y - 8.5 * mm)
