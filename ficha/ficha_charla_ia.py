@@ -52,7 +52,7 @@ LOGO_COLANTA = ImageReader(f"{BRAND}/colanta_vertical.png")
 LOGO_DV = ImageReader(f"{BRAND}/logo_color_ss.png")      # Datavet logo principal (sin eslogan): el eslogan va como texto legible
 LOGO_DV_K = ImageReader(f"{BRAND}/logo_negro_ss.png")    # Datavet logo negro (sin eslogan)
 SR = 754 / 3040                                          # alto/ancho logos sin eslogan
-ISO_V = ImageReader(f"{BRAND}/isotipo_v.png")            # la «V» de Datavet (verde) en el centro de los QR
+ISO_V = ImageReader(f"{BRAND}/isotipo_v.png")            # la «V» de Datavet (verde); ya no se usa en la ficha
 ISO_V_K = ImageReader(f"{BRAND}/isotipo_v_negro.png")    # la misma «V» en negro, para la cara solo láser
 ISO_R = 479 / 347                                        # alto/ancho de la V
 SLOGAN = "Analizar para innovar, innovar para evolucionar"
@@ -150,8 +150,6 @@ def front(c, y0, color=True, laser=True):
         x = X0 + i * CW
         inner = CW - 3 * mm
         qx, qy = x + (inner - QS) / 2, bot + FOOT + 4.6 * mm
-        if color and not laser:
-            qr_v(c, qx, qy, QS, True)
         if color:
             label = f"{n} · {tool.upper()}"
             tw = c.stringWidth(label, "Jost-SB", fs) + 3 * mm
@@ -181,8 +179,7 @@ def front(c, y0, color=True, laser=True):
             c.setFont("Jost", 7); c.setFillColor(K); c.drawString(x + inner - 11 * mm, ay - 4.3 * mm, kind)
         # QR + casilla
         c.drawImage(QRS[url], qx, qy, QS, QS)
-        if color:
-            qr_v(c, qx, qy, QS, True)        # vista completa: la V va encima del QR
+        qr_v(c, qx, qy, QS, False)           # V negra en la misma pasada láser que el QR: sin riesgo de registro
         box(c, x + (inner - QS) / 2, bot + FOOT + 0.4 * mm, 2.8 * mm)
         c.setFont("Jost-SB", 6.9); c.setFillColor(K)
         c.drawString(x + (inner - QS) / 2 + 4 * mm, bot + FOOT + 1 * mm, "Lo escaneé")
