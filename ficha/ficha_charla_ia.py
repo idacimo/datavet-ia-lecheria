@@ -12,7 +12,7 @@ Uso (desde la raíz del repo):  python ficha/ficha_charla_ia.py ficha/salida fic
 """
 import io, os, sys
 import qrcode
-from qrcode.constants import ERROR_CORRECT_M
+from qrcode.constants import ERROR_CORRECT_H
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import mm
 from reportlab.lib.colors import HexColor, white, Color
@@ -49,14 +49,32 @@ LR = 1415 / 4181                     # alto/ancho logos Datavet con eslogan
 CR = 565 / 519                       # alto/ancho logo Colanta vertical
 
 LOGO_COLANTA = ImageReader(f"{BRAND}/colanta_vertical.png")
-LOGO_DV = ImageReader(f"{BRAND}/slogan_trans.png")
-LOGO_DV_K = ImageReader(f"{BRAND}/slogan_negro.png")
+LOGO_DV = ImageReader(f"{BRAND}/logo_color_ss.png")      # Datavet logo principal (sin eslogan): el eslogan va como texto legible
+LOGO_DV_K = ImageReader(f"{BRAND}/logo_negro_ss.png")    # Datavet logo negro (sin eslogan)
+SR = 754 / 3040                                          # alto/ancho logos sin eslogan
+ISO_V = ImageReader(f"{BRAND}/isotipo_v.png")            # la «V» de Datavet (verde) en el centro de los QR
+ISO_V_K = ImageReader(f"{BRAND}/isotipo_v_negro.png")    # la misma «V» en negro, para la cara solo láser
+ISO_R = 479 / 347                                        # alto/ancho de la V
+SLOGAN = "Analizar para innovar, innovar para evolucionar"
+HOLE = 0.27                                              # parte del QR que queda en blanco en el centro (corrección de errores alta: 30 %)
 
 def qr_img(url):
-    q = qrcode.QRCode(error_correction=ERROR_CORRECT_M, box_size=12, border=0)
+    """QR con corrección alta y un hueco blanco al centro para la V de Datavet."""
+    q = qrcode.QRCode(error_correction=ERROR_CORRECT_H, box_size=12, border=0)
     q.add_data(url); q.make(fit=True)
-    b = io.BytesIO(); q.make_image(fill_color="black", back_color="white").convert("1").save(b, "PNG"); b.seek(0)
+    im = q.make_image(fill_color="black", back_color="white").convert("1")
+    n = q.modules_count
+    h = int(round(n * HOLE)); h += (n - h) % 2      # hueco centrado sobre módulos enteros
+    a = (n - h) // 2 * 12
+    from PIL import ImageDraw
+    ImageDraw.Draw(im).rectangle([a, a, a + h * 12 - 1, a + h * 12 - 1], fill=1)
+    b = io.BytesIO(); im.save(b, "PNG"); b.seek(0)
     return ImageReader(b)
+
+def qr_v(c, x, y, s, color=True):
+    """Dibuja la V centrada en un QR de lado s ubicado en (x, y). Queda ~1 mm de margen dentro del hueco."""
+    vh = s * HOLE * 0.62; vw = vh / ISO_R
+    c.drawImage(ISO_V if color else ISO_V_K, x + (s - vw) / 2, y + (s - vh) / 2, vw, vh, mask="auto")
 
 def para(c, text, x, y_top, w, size, font="Jost", color=K, lead=None):
     p = Paragraph(text, ParagraphStyle("p", fontName=font, fontSize=size, leading=lead or size * 1.22, textColor=color))
@@ -131,6 +149,9 @@ def front(c, y0, color=True, laser=True):
     for i, (n, tool, col, tcol, title, reto, kind, url) in enumerate(STEPS):
         x = X0 + i * CW
         inner = CW - 3 * mm
+        qx, qy = x + (inner - QS) / 2, bot + FOOT + 4.6 * mm
+        if color and not laser:
+            qr_v(c, qx, qy, QS, True)
         if color:
             label = f"{n} · {tool.upper()}"
             tw = c.stringWidth(label, "Jost-SB", fs) + 3 * mm
@@ -148,9 +169,9 @@ def front(c, y0, color=True, laser=True):
         ay = ry - h2 - 1.2 * mm                          # zona de respuesta
         c.setStrokeColor(K); c.setLineWidth(0.6)
         if kind == "opciones":
-            ops = ("Ninguna", "ChatGPT", "Gemini", "Otra")
+            ops = ("Ninguna", "ChatGPT", "Gemini", "Claude", "Copilot", "Otra")
             for k, o in enumerate(ops):
-                ox = x + (k % 2) * (inner / 2); oy = ay - 3.4 * mm - (k // 2) * 4.2 * mm
+                ox = x + (k % 2) * (inner / 2); oy = ay - 3.4 * mm - (k // 2) * 3.9 * mm
                 box(c, ox, oy, 2.6 * mm)
                 c.setFont("Jost", 6.9); c.setFillColor(K); c.drawString(ox + 3.6 * mm, oy + 0.5 * mm, o)
         elif kind == "linea":
@@ -159,22 +180,27 @@ def front(c, y0, color=True, laser=True):
             c.line(x, ay - 4.5 * mm, x + inner - 12 * mm, ay - 4.5 * mm)
             c.setFont("Jost", 7); c.setFillColor(K); c.drawString(x + inner - 11 * mm, ay - 4.3 * mm, kind)
         # QR + casilla
-        qy = bot + FOOT + 4.6 * mm
-        c.drawImage(QRS[url], x + (inner - QS) / 2, qy, QS, QS)
+        c.drawImage(QRS[url], qx, qy, QS, QS)
+        if color:
+            qr_v(c, qx, qy, QS, True)        # vista completa: la V va encima del QR
         box(c, x + (inner - QS) / 2, bot + FOOT + 0.4 * mm, 2.8 * mm)
         c.setFont("Jost-SB", 6.9); c.setFillColor(K)
         c.drawString(x + (inner - QS) / 2 + 4 * mm, bot + FOOT + 1 * mm, "Lo escaneé")
 
     # ---- franja Datavet (al final de los casos)
-    dl = 17 * mm; dh = dl * LR
-    dy = bot - 1.5 * mm
+    dl = 17 * mm; dh = dl * SR
+    dy = bot - 0.8 * mm
+    lx = X0 + 20 * mm + GAP
+    ty = dy + dh / 2 - 1.1 * mm
     if laser:
-        c.setFont("Jost-M", 7); c.setFillColor(K80)
-        c.drawRightString(X0 + 20 * mm, dy + dh / 2 - 0.5 * mm, "Desarrollado por")
-        c.setFont("Jost", 7); c.setFillColor(K)
-        c.drawRightString(W - PAD - 1.5 * mm, dy + dh / 2 - 0.5 * mm, "Todo el material: idacimo.github.io/datavet-ia-lecheria")
+        c.setFont("Jost-M", 7.2); c.setFillColor(K80)
+        c.drawRightString(X0 + 20 * mm, ty, "Desarrollado por")
+        c.setFont("Jost-M", 7.6); c.setFillColor(K)
+        c.drawString(lx + dl + GAP, ty, SLOGAN)
+        c.setFont("Jost", 7); c.setFillColor(K80)
+        c.drawRightString(W - PAD - 1.5 * mm, ty, "idacimo.github.io/datavet-ia-lecheria")
     if color:
-        c.drawImage(LOGO_DV, X0 + 20 * mm + GAP, dy, width=dl, height=dh, mask="auto")
+        c.drawImage(LOGO_DV, lx, dy, width=dl, height=dh, mask="auto")
 
 # ====================================================================== REVERSO (láser)
 IAS = [
@@ -185,7 +211,7 @@ IAS = [
     ("Copilot", "Microsoft", "Dentro de Excel, Word y Outlook."),
 ]
 PROMPT = [
-    ("Rol", "quién quiere que sea la IA", "«Eres un veterinario asesor en calidad de leche.»"),
+    ("Rol", "quién quiere que sea la IA", "«Eres un asesor experto en calidad de leche.»"),
     ("Datos", "qué le entrega", "«Adjunto el control lechero de mi finca de los últimos 12 meses.»"),
     ("Tarea", "qué debe hacer, paso a paso", "«Dime qué vacas aportan más células al tanque y cuáles repiten.»"),
     ("Entrega", "cómo quiere la respuesta", "«En una tabla, con 3 acciones y en lenguaje sencillo.»"),
@@ -221,7 +247,7 @@ def back(c, y0):
     h = para(c, "Es la <b>instrucción</b> que usted le escribe a la IA. Entre más clara, mejor la respuesta. "
                 "Un buen prompt tiene <b>4 partes</b>:", bx, y, bw, 7.3, "Jost", K, 8.7)
     y -= h + 1.8 * mm
-    rh = 11.2 * mm
+    rh = 10.0 * mm
     for k, (part, what, ex) in enumerate(PROMPT):
         ry = y - k * rh
         c.setFillColor(K); c.circle(bx + 2.6 * mm, ry - 2.8 * mm, 2.4 * mm, stroke=0, fill=1)
@@ -230,8 +256,16 @@ def back(c, y0):
         c.setFont("Jost", 6.8); c.setFillColor(K80)
         c.drawString(bx + 6.5 * mm + c.stringWidth(part, "Jost-B", 8.2) + 1.5 * mm, ry - 3.6 * mm, f"· {what}")
         para(c, ex, bx + 6.5 * mm, ry - 4.6 * mm, bw - 6.5 * mm, 7.1, "Jost", K, 8.2)
-    c.setFont("Jost-SB", 6.9); c.setFillColor(K)
-    c.drawString(bx, bot, "Ejemplo completo: pegue las 4 partes en un solo mensaje.")
+    # el prompt completo, armado con las 4 partes
+    full = ("Eres un asesor experto en calidad de leche. Adjunto el control lechero de mi finca de los últimos "
+            "12 meses. Dime qué vacas aportan más células al tanque y cuáles repiten. Entrégalo en una tabla, "
+            "con 3 acciones y en lenguaje sencillo.")
+    st = ParagraphStyle("f", fontName="Jost", fontSize=7, leading=8.3, textColor=K)
+    pf = Paragraph("«" + full + "»", st); _, ph = pf.wrap(bw - 4 * mm, 40 * mm)
+    bh = ph + 7.4 * mm
+    c.setFillColor(K12); c.roundRect(bx, bot - 0.5 * mm, bw, bh, 1.5 * mm, stroke=0, fill=1)
+    c.setFont("Jost-B", 7.4); c.setFillColor(K); c.drawString(bx + 2 * mm, bot - 0.5 * mm + bh - 3.8 * mm, "El prompt completo, listo para pegar:")
+    pf.drawOn(c, bx + 2 * mm, bot + 1.2 * mm)
 
     # ---- C: apps + compromiso + contacto
     cx = bx + bw + 5 * mm; cw = W - PAD - cx
@@ -242,6 +276,7 @@ def back(c, y0):
                                        (QR_ROI, "ROI ordeño", "retorno de automatizar"))):
         qx = cx + k * (cw / 2)
         c.drawImage(img, qx, y - qs, qs, qs)
+        qr_v(c, qx, y - qs, qs, False)
         c.setFont("Jost-B", 7.4); c.setFillColor(K); c.drawString(qx, y - qs - 3.2 * mm, t1)
         c.setFont("Jost", 6.5); c.setFillColor(K80); c.drawString(qx, y - qs - 6 * mm, t2)
     y -= qs + 9.5 * mm
@@ -249,10 +284,12 @@ def back(c, y0):
     c.drawString(cx, y - 3.4 * mm, "que voy a organizar es")
     c.setStrokeColor(K); c.setLineWidth(0.6); c.line(cx, y - 8.5 * mm, cx + cw, y - 8.5 * mm)
     # contacto
-    lw = 25 * mm
-    c.drawImage(LOGO_DV_K, cx, bot + 9.8 * mm, width=lw, height=lw * LR, mask="auto")
-    c.setFont("Jost-SB", 6.8); c.setFillColor(K); c.drawString(cx, bot + 6.6 * mm, "Iván Darío Cifuentes M. · WhatsApp 315 501 0037")
-    c.setFont("Jost", 6.6); c.drawString(cx, bot + 3.3 * mm, "ivan.cifuentes@datavet.info")
+    lw = 27 * mm
+    c.drawImage(LOGO_DV_K, cx, bot + 17.2 * mm, width=lw, height=lw * SR, mask="auto")
+    c.setFont("Jost-M", 7.2); c.setFillColor(K); c.drawString(cx, bot + 13.6 * mm, SLOGAN)
+    c.setFont("Jost-SB", 7.2); c.drawString(cx, bot + 9.6 * mm, "Iván Darío Cifuentes M.")
+    c.setFont("Jost", 7); c.drawString(cx, bot + 6.4 * mm, "WhatsApp 315 501 0037")
+    c.drawString(cx, bot + 3.2 * mm, "ivan.cifuentes@datavet.info")
     c.drawString(cx, bot, "idacimo@gmail.com")
 
 def doc(name, title):
