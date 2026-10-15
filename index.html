@@ -150,13 +150,13 @@ Escríbelo en lenguaje sencillo, sin tecnicismos. Si algo no está en las fuente
 <section id="c2">
   <span class="tag gem">Caso 2 · Gemini</span>
   <h2>Levante de terneras: ¿van creciendo al ritmo que deben?</h2>
-  <p class="lead">Con una hoja de pesajes sencilla, Gemini calcula la ganancia diaria de cada animal, la compara con la curva de peso ideal de su raza y le dice cuáles tuvieron problemas en el último pesaje.</p>
+  <p class="lead">Con una hoja de pesajes sencilla, Gemini calcula la ganancia diaria de cada animal, la compara con la curva de peso ideal de su raza, le dice cuáles tuvieron problemas en el último pesaje y le entrega todo en Excel. También lee la planilla escrita a mano.</p>
   <ol class="steps">
     <li>Prepare un Excel con dos hojas. <strong>Pesajes:</strong> Número, Peso (kg), Fecha de pesaje, Observación. <strong>Nacimientos:</strong> Número, Fecha de nacimiento, Raza (HO, F1, F2, JE).</li>
-    <li>Abra <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a>, adjunte el archivo y pegue el prompt A. Las curvas de peso ideal ya van dentro del prompt: son valores de referencia, no hace falta ponerlas en el Excel. Si usa otras curvas, cambie esos números.</li>
-    <li>Cuando tenga el informe, pegue el prompt B para llevárselo en Excel.</li>
+    <li>Abra <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a>, adjunte el archivo y pegue el prompt A. Las curvas de peso ideal van dentro del prompt: son valores de referencia, no hacen falta en el Excel. Si usa otras curvas, cambie esos números.</li>
+    <li>Cada vez que pese, en el mismo chat: adjunte el Excel del pesaje nuevo y pegue el prompt B, o tómele foto a la planilla escrita a mano y pegue el prompt C.</li>
   </ol>
-  <h3>Prompt A · Informe del último pesaje</h3>
+  <h3>Prompt A · Informe del levante y el último pesaje</h3>
   <div class="prompt"><pre id="p2">Eres un asesor experto en levante de reemplazos para lechería especializada de trópico alto en Colombia.
 
 Adjunto un Excel con dos hojas:
@@ -177,18 +177,33 @@ Haz lo siguiente, en este orden:
    b) ganaron menos de 400 g/día;
    c) están por debajo del 90 % del peso ideal para su edad;
    d) tienen una observación del personal (enfermedad, tratamiento, cojera, cambio de potrero, etc.);
-   e) el peso parece un error de digitación (cambia más de 60 % frente al anterior o no es posible para su edad); no lo uses en los cálculos y pide verificarlo;
+   e) el peso parece un error de digitación (ganancia de más de 1.500 g/día, pérdida de más de 1.500 g/día o un peso imposible para su edad); no lo uses en los cálculos y pide verificarlo;
    f) llevan más de 90 días sin pesarse.
    Ordénala de más urgente a menos urgente.
 4. Resume el lote: número de animales, GDP promedio del último intervalo, cuántos están en el ideal, entre 90 y 100 % y por debajo del 90 %, por raza.
 5. Haz una gráfica de peso contra edad con todos los pesajes, las curvas ideales de cada raza (Holstein, F1 y Jersey), y los animales con problemas resaltados.
 6. Cierra con 3 a 5 acciones concretas para esta semana: qué animales revisar primero, a cuáles volver a pesar y qué ajustar en alimentación o manejo.
 
+7. Al final, genera un archivo de Excel para descargar con toda la información que entregaste: una hoja con todos los pesajes y sus cálculos, una con el último pesaje de cada animal, una con los animales con problemas y una con el resumen del lote.
+
 Usa solo los datos del archivo, no inventes cifras. Escríbelo en lenguaje sencillo para el administrador de la finca, con tablas claras.</pre></div>
   <div class="row"><button class="copy" data-target="p2">Copiar prompt</button></div>
-  <h3>Prompt B · Todo en Excel</h3>
-  <div class="prompt"><pre id="p2b">Genera toda la información que ya entregaste en un archivo de Excel.</pre></div>
+  <h3>Prompt B · Agregar un pesaje nuevo</h3>
+  <div class="prompt"><pre id="p2b">Adjunto los pesajes nuevos del [fecha] (Número, Peso en kg, Observación). Antes de agregarlos, revísalos y dime:
+1. Qué animales pesados NO aparecen en la hoja «Nacimientos» (no tienen fecha de nacimiento ni raza) y cuáles números parecen mal escritos (no existen o están repetidos). Para esos, pídeme la fecha de nacimiento y la raza antes de calcularlos.
+2. Qué animales de «Nacimientos» debían pesarse y no aparecen en este pesaje.
+3. Qué pesos parecen errores de digitación frente al pesaje anterior (ganancia o pérdida de más de 1.500 g/día, o un peso imposible para su edad).
+
+Después, agrega los pesajes que estén bien a la historia y repite el análisis completo con las mismas curvas ideales y los mismos pasos: el último pesaje de cada animal, la tabla «Animales con problemas en el último pesaje» ordenada por urgencia, el resumen del lote por raza, la gráfica y las acciones para esta semana.
+Al final, genera el Excel actualizado con toda la información y una hoja «Pendientes por verificar» con lo que encontraste en los puntos 1 a 3.</pre></div>
   <div class="row"><button class="copy" data-target="p2b">Copiar prompt</button></div>
+  <h3>Prompt C · El pesaje en la planilla escrita a mano</h3>
+  <div class="prompt"><pre id="p2c">Adjunto las fotos de la planilla de pesaje escrita a mano del [fecha]. Por favor:
+1. Transcribe la planilla a una tabla con Número, Peso (kg) y Observación, en el mismo orden de la hoja.
+2. Marca con «¿?» todo lo que no se lea con claridad, lo que esté tachado o corregido, y los números de animal que no existan en la hoja «Nacimientos». No adivines: pregúntame esos datos.
+3. Muéstrame la tabla para que la revise antes de usarla.
+Cuando te confirme la tabla, agrégala como pesaje nuevo y sigue los mismos pasos de revisión, análisis y Excel actualizado que usamos para los pesajes nuevos.</pre></div>
+  <div class="row"><button class="copy" data-target="p2c">Copiar prompt</button></div>
   <p class="note">¿Cuántas terneras y novillas necesita su finca para sostener el hato? Use la calculadora de reemplazos: <a href="https://idacimo.github.io/Reemplazos_Fincas_Lecheras/" target="_blank" rel="noopener">abrir la app</a>.</p>
 </section>
 
