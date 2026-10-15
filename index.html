@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Decisiones ganaderas con datos e IA | Datavet</title>
-<meta name="description" content="Los prompts de la charla Decisiones ganaderas basadas en datos e IA: NotebookLM, Gemini y Claude aplicados a la lechería especializada. Cópielos y úselos en su finca.">
+<meta name="description" content="Los prompts de la charla Decisiones ganaderas basadas en datos e IA: Gemini Notebook, Gemini y Claude aplicados a la lechería especializada. Cópielos y úselos en su finca.">
 <meta name="author" content="Iván Darío Cifuentes Moreno · Datavet">
 <meta name="theme-color" content="#07193F">
 <meta property="og:type" content="website">
@@ -64,7 +64,7 @@ footer{max-width:760px;margin:0 auto;padding:0 16px 40px;font-size:.88rem;color:
     <h1>Decisiones ganaderas basadas en datos e inteligencia artificial</h1>
     <p>Los prompts de la charla, listos para copiar y usar con los datos de su finca.</p>
     <nav aria-label="Secciones">
-      <a href="#teoria">0 · Teoría</a><a href="#c1">1 · NotebookLM</a><a href="#c2">2 · Levante</a><a href="#c3">3 · Genómica</a><a href="#c4">4 · Rentabilidad</a><a href="#app">App reemplazos</a><a href="#roi">App ROI ordeño</a>
+      <a href="#teoria">0 · Teoría</a><a href="#c1">1 · Colillas</a><a href="#c2">2 · Levante</a><a href="#c3">3 · Genómica</a><a href="#c4">4 · Rentabilidad</a><a href="#app">App reemplazos</a><a href="#roi">App ROI ordeño</a>
     </nav>
   </div>
 </header>
@@ -76,45 +76,54 @@ footer{max-width:760px;margin:0 auto;padding:0 16px 40px;font-size:.88rem;color:
 <section id="teoria">
   <span class="tag">Paso 0 · Teoría</span>
   <h2>La IA en 5 minutos: tipos de inteligencia artificial y principales herramientas</h2>
-  <p class="lead">Un cuaderno de NotebookLM con la teoría de la charla. Hágale preguntas en su propio lenguaje, pida un resumen en audio o un cuestionario.</p>
+  <p class="lead">Un cuaderno de Gemini Notebook (antes NotebookLM) con la teoría de la charla. Hágale preguntas en su propio lenguaje, pida un resumen en audio o un cuestionario.</p>
   <a class="btn alt" id="nb-link" href="https://notebook.google.com/notebook/6dac1807-e8cf-45e8-a80d-320b47b6ff07" target="_blank" rel="noopener">Abrir «Inteligencia artificial aplicada en la ganadería»</a>
 </section>
 
 
 <!-- ================= CASO 1 ================= -->
 <section id="c1">
-  <span class="tag">Caso 1 · NotebookLM</span>
-  <h2>El cuaderno de la finca: capacitar al personal y consolidar los informes</h2>
-  <p class="lead">NotebookLM responde <strong>solo</strong> con los documentos que usted le sube. Eso lo hace ideal para enseñar los protocolos propios de la finca y para leer de una vez muchos informes de control lechero.</p>
+  <span class="tag">Caso 1 · Gemini Notebook</span>
+  <h2>Las colillas de leche: ¿estoy obteniendo el mejor precio por mi leche o puede mejorar?</h2>
+  <p class="lead">Gemini Notebook (antes NotebookLM) responde <strong>solo</strong> con los documentos que usted le sube. Con las colillas de pago de un año, le muestra mes a mes de dónde sale el precio de su litro y cuánta plata está dejando sobre la mesa.</p>
   <ol class="steps">
-    <li>Entre a <a href="https://notebooklm.google.com" target="_blank" rel="noopener">notebooklm.google.com</a> con su cuenta de Google y cree un cuaderno nuevo.</li>
-    <li>Suba como fuentes: protocolos de ordeño, manuales, videos de YouTube, y los PDF del control lechero de los últimos 12 meses.</li>
-    <li>Pegue el prompt A o el B en el chat.</li>
+    <li>Entre a <a href="https://notebooklm.google.com" target="_blank" rel="noopener">Gemini Notebook</a> con su cuenta de Google y cree un cuaderno nuevo.</li>
+    <li>Suba como fuentes las colillas de pago de la leche de los últimos 12 meses (PDF o fotos claras) y la tabla de bonificaciones y descuentos de su empresa compradora.</li>
+    <li>Pegue el prompt A. Cuando tenga el análisis, pegue el prompt B.</li>
   </ol>
 
-  <h3>Prompt A · Capacitación del personal</h3>
-  <div class="prompt"><pre id="p1a">Actúa como el jefe técnico de una lechería especializada de trópico alto en Colombia. Usa ÚNICAMENTE las fuentes de este cuaderno.
+  <h3>Prompt A · ¿De dónde sale el precio de mi litro?</h3>
+  <div class="prompt"><pre id="p1a">Eres un asesor experto en calidad de leche y en el sistema de pago de leche al productor en Colombia. Usa ÚNICAMENTE las fuentes de este cuaderno: las colillas de pago de mi finca [nombre] de los últimos [12] meses y la tabla de bonificaciones de la empresa.
 
-Necesito capacitar a un ordeñador nuevo en la finca [nombre de la finca]. Prepara:
-1. La rutina de ordeño paso a paso, en el orden exacto en que se hace aquí, con el tiempo que debe tomar cada paso.
-2. Los 5 errores más comunes que dañan la calidad de la leche o la salud de la ubre, y cómo evitarlos.
-3. Qué hacer cuando aparece una vaca con mastitis clínica (a quién avisar, cómo marcarla, qué leche se descarta).
-4. Un cuestionario de 10 preguntas de selección múltiple, con las respuestas al final, para evaluar si entendió.
+1. Arma una tabla mes a mes con: litros entregados, precio base, bonificación o descuento por grasa, proteína (o sólidos totales), calidad higiénica (UFC), células somáticas (RCS), frío, buenas prácticas, hato libre (brucelosis y tuberculosis), volumen y otras bonificaciones, descuentos (transporte, cuota de fomento, préstamos, insumos) y precio final pagado por litro.
+2. Dime en qué meses recibí el mejor y el peor precio, y qué explica la diferencia.
+3. Compara cada componente contra el máximo que paga la tabla de la empresa: ¿en cuáles estoy recibiendo todo y en cuáles estoy perdiendo plata?
+4. Calcula cuánto dinero dejé de recibir en el año por cada componente donde no estuve en el rango máximo.
 
-Escríbelo en lenguaje sencillo, como se le explica a un trabajador de finca, sin tecnicismos. Si algo no está en las fuentes, dilo en lugar de inventarlo.</pre></div>
+Presenta los números en tablas, cita la colilla de donde sale cada dato y, si algo no está en las fuentes, dilo en lugar de inventarlo.</pre></div>
   <div class="row"><button class="copy" data-target="p1a">Copiar prompt</button></div>
 
-  <h3>Prompt B · Análisis consolidado del control lechero</h3>
-  <div class="prompt"><pre id="p1b">Eres un asesor experto en calidad de leche y nutrición de ganado lechero. En las fuentes están los informes del control lechero de mi finca de los últimos [12] meses.
+  <h3>Prompt B · ¿Cómo mejoro el precio?</h3>
+  <div class="prompt"><pre id="p1b">Con el análisis anterior, responde: ¿estoy obteniendo el mejor precio por mi leche o puede mejorar?
 
-Haz un análisis consolidado:
-1. Tendencia mes a mes de producción por vaca, grasa, proteína, sólidos totales, recuento de células somáticas (RCS) y MUN. Dime qué mejoró, qué empeoró y desde cuándo.
-2. Salud de ubre: porcentaje de vacas sanas, nuevas infecciones, crónicas y las 10 vacas que más aportan células al tanque. ¿Cuáles repiten mes tras mes?
-3. Nutrición: interpreta la relación grasa/proteína y el MUN por tercio de lactancia (inicio, mitad, final). ¿Hay señales de acidosis, cetosis o exceso de proteína en la dieta?
-4. Las 3 prioridades para los próximos 90 días, con una meta medible para cada una.
+1. Ordena las oportunidades de mayor a menor plata al año.
+2. Para las 3 primeras, explica en lenguaje sencillo qué tendría que cambiar en la finca (rutina de ordeño, limpieza del equipo, enfriamiento, alimentación, salud de ubre, certificaciones) y en cuánto tiempo se vería en la colilla.
+3. Dime qué dato debo revisar cada mes en la colilla para saber si voy mejorando.
 
-Presenta los números en tablas y cita el informe de donde sale cada dato.</pre></div>
+Entrégalo como un plan corto de una página, con una meta medible para cada oportunidad.</pre></div>
   <div class="row"><button class="copy" data-target="p1b">Copiar prompt</button></div>
+
+  <h3>Otros usos del cuaderno de la finca</h3>
+  <div class="prompt"><pre id="p1c">Actúa como el jefe técnico de una lechería especializada de trópico alto en Colombia. Usa ÚNICAMENTE las fuentes de este cuaderno (protocolos de ordeño, manuales e informes de control lechero).
+
+Necesito capacitar a un ordeñador nuevo en la finca [nombre de la finca]. Prepara:
+1. La rutina de ordeño paso a paso, en el orden exacto en que se hace aquí.
+2. Los 5 errores más comunes que dañan la calidad de la leche o la salud de la ubre, y cómo evitarlos.
+3. Qué hacer cuando aparece una vaca con mastitis clínica.
+4. Un cuestionario de 10 preguntas de selección múltiple, con las respuestas al final.
+
+Escríbelo en lenguaje sencillo, sin tecnicismos. Si algo no está en las fuentes, dilo en lugar de inventarlo.</pre></div>
+  <div class="row"><button class="copy" data-target="p1c">Copiar prompt</button></div>
 </section>
 
 <!-- ================= CASO 2 ================= -->
@@ -145,12 +154,12 @@ Explícalo en lenguaje sencillo para el administrador de la finca.</pre></div>
 
 <!-- ================= CASO 3 ================= -->
 <section id="c3">
-  <span class="tag gen">Caso 3 · Genómica</span>
+  <span class="tag gen">Caso 3 · Claude</span>
   <h2>Genómica: decidir con datos cuáles terneras criar</h2>
-  <p class="lead">Ejemplo basado en el proyecto de genómica en las fincas El Cebo, La Gloria y La Esmeralda. Con los resultados de la prueba, la IA ordena las hembras y propone qué hacer con cada grupo.</p>
+  <p class="lead">Ejemplo basado en el proyecto de genómica en las fincas El Cepo, La Gloria y La Esmeralda. Con los resultados de la prueba, la IA ordena las hembras y propone qué hacer con cada grupo.</p>
   <ol class="steps">
     <li>Pida al laboratorio los resultados en Excel o CSV (no solo en PDF).</li>
-    <li>Ábralo en el asistente que prefiera (Claude, Gemini o ChatGPT), adjunte el archivo y pegue el prompt.</li>
+    <li>Entre a <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>, adjunte el archivo y pegue el prompt. También funciona en Gemini o ChatGPT.</li>
   </ol>
   <div class="prompt"><pre id="p3">Eres un asesor en mejoramiento genético de ganado de leche en trópico alto colombiano.
 

@@ -1,15 +1,15 @@
 # IA en lechería especializada | Datavet
 
-Página de apoyo de la charla **Decisiones ganaderas basadas en datos e IA**: los prompts de los cuatro casos (NotebookLM, Gemini, genómica y Claude), listos para copiar desde el celular, más los enlaces al cuaderno de teoría en NotebookLM y a la calculadora de reemplazos.
+Página de apoyo de la charla **Decisiones ganaderas basadas en datos e IA**: los prompts de los cuatro casos (Gemini Notebook, Gemini y Claude), listos para copiar desde el celular, más los enlaces al cuaderno de teoría en Gemini Notebook (antes NotebookLM) y a la calculadora de reemplazos.
 
 **En línea:** https://idacimo.github.io/datavet-ia-lecheria/
 
 | Ancla | Contenido |
 |---|---|
 | `#teoria` | Paso 0 · Cuaderno «Inteligencia artificial aplicada en la ganadería» |
-| `#c1` | Caso 1 · NotebookLM: capacitación y control lechero consolidado |
+| `#c1` | Caso 1 · Gemini Notebook: las colillas de leche (¿estoy recibiendo el mejor precio?) |
 | `#c2` | Caso 2 · Gemini: levante de terneras |
-| `#c3` | Caso 3 · Genómica: qué terneras criar |
+| `#c3` | Caso 3 · Claude: genómica, qué terneras criar |
 | `#c4` | Caso 4 · Claude: rentabilidad vaca por vaca |
 | `#app` | Calculadora de reemplazos |
 | `#roi` | Simulador ROI de la automatización del ordeño |
