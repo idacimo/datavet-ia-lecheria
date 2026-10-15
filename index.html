@@ -133,17 +133,15 @@ Ilustraciones de finca lechera, vacas Holstein, números grandes, poco texto. Us
   <div class="prompt"><pre id="p1e">Genera toda la información que ya entregaste en un archivo de Excel.</pre></div>
   <div class="row"><button class="copy" data-target="p1e">Copiar prompt</button></div>
 
-  <h3>Otros usos del cuaderno de la finca</h3>
-  <div class="prompt"><pre id="p1d">Actúa como el jefe técnico de una lechería especializada de trópico alto en Colombia. Usa ÚNICAMENTE las fuentes de este cuaderno (protocolos de ordeño, manuales e informes de control lechero).
-
-Necesito capacitar a un ordeñador nuevo en la finca [nombre de la finca]. Prepara:
-1. La rutina de ordeño paso a paso, en el orden exacto en que se hace aquí.
-2. Los 5 errores más comunes que dañan la calidad de la leche o la salud de la ubre, y cómo evitarlos.
-3. Qué hacer cuando aparece una vaca con mastitis clínica.
-4. Un cuestionario de 10 preguntas de selección múltiple, con las respuestas al final.
-
-Escríbelo en lenguaje sencillo, sin tecnicismos. Si algo no está en las fuentes, dilo en lugar de inventarlo.</pre></div>
-  <div class="row"><button class="copy" data-target="p1d">Copiar prompt</button></div>
+  <h3>Otros usos del cuaderno de las colillas</h3>
+  <p>Con las mismas colillas en el cuaderno, pegue cualquiera de estas preguntas en el chat:</p>
+  <div class="prompt"><pre id="p1f">Explícame, renglón por renglón y en palabras sencillas, qué significa cada concepto de la última colilla: precio base, pago por proteína y grasa, cada bonificación, flete, capitalización, fondo de estabilización, retención y cartera. Dime cuáles dependen de lo que hacemos en la finca y cuáles no.</pre></div>
+  <div class="row"><button class="copy" data-target="p1f">Copiar prompt</button></div>
+  <div class="prompt"><pre id="p1g">¿Cuánto me pagaron en total en el período y cuánto me descontaron? Separa los descuentos en: flete, capitalización, fondo de estabilización, retención en la fuente y cartera (compras en Agrocolanta). ¿Qué porcentaje de lo que produjo la leche se fue en descuentos y cómo va el saldo de mis facturas pendientes?</pre></div>
+  <div class="row"><button class="copy" data-target="p1g">Copiar prompt</button></div>
+  <div class="prompt"><pre id="p1h">Compara semana a semana los litros entregados, la temperatura de la leche y el recuento bacteriano (UFC). ¿Hay días o semanas en que la temperatura subió o bajaron los litros? Dime qué semanas debo revisar con el personal y por qué.</pre></div>
+  <div class="row"><button class="copy" data-target="p1h">Copiar prompt</button></div>
+  <p class="note">En el panel Studio también puede pedir un <strong>resumen en audio</strong> de las colillas para escucharlo en el carro, o un <strong>cuestionario</strong> para el personal sobre calidad de leche.</p>
 </section>
 
 <!-- ================= CASO 2 ================= -->
@@ -152,7 +150,7 @@ Escríbelo en lenguaje sencillo, sin tecnicismos. Si algo no está en las fuente
   <h2>Levante de terneras: ¿van creciendo al ritmo que deben?</h2>
   <p class="lead">Con una hoja de pesajes sencilla, Gemini calcula la ganancia diaria de cada animal, la compara con la curva de peso ideal de su raza, le dice cuáles tuvieron problemas en el último pesaje y le entrega todo en Excel. También lee la planilla escrita a mano.</p>
   <ol class="steps">
-    <li>Prepare un Excel con dos hojas. <strong>Pesajes:</strong> Número, Peso (kg), Fecha de pesaje, Observación. <strong>Nacimientos:</strong> Número, Fecha de nacimiento, Raza (HO, F1, F2, JE).</li>
+    <li>Prepare un Excel con dos hojas. <strong>Pesajes:</strong> Fecha de pesaje, Número, Peso (kg), Observación, en el orden en que se pesa. <strong>Nacimientos:</strong> Número, Fecha de nacimiento, Raza (HO, F1, F2, JE).</li>
     <li>Abra <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a>, adjunte el archivo y pegue el prompt A. Las curvas de peso ideal van dentro del prompt: son valores de referencia, no hacen falta en el Excel. Si usa otras curvas, cambie esos números.</li>
     <li>Cada vez que pese, en el mismo chat: adjunte el Excel del pesaje nuevo y pegue el prompt B, o tómele foto a la planilla escrita a mano y pegue el prompt C.</li>
   </ol>
@@ -160,7 +158,7 @@ Escríbelo en lenguaje sencillo, sin tecnicismos. Si algo no está en las fuente
   <div class="prompt"><pre id="p2">Eres un asesor experto en levante de reemplazos para lechería especializada de trópico alto en Colombia.
 
 Adjunto un Excel con dos hojas:
-- «Pesajes»: Número, Peso (kg), Fecha de pesaje y Observación (lo que anotó el personal ese día).
+- «Pesajes»: Fecha de pesaje, Número, Peso (kg) y Observación (lo que anotó el personal ese día), en el orden en que se pesó.
 - «Nacimientos»: Número, Fecha de nacimiento y Raza (HO = Holstein; F1 y F2 = cruces; JE = Jersey).
 
 Usa como referencia estas curvas de peso ideal por edad (meses: kg):
@@ -189,7 +187,7 @@ Haz lo siguiente, en este orden:
 Usa solo los datos del archivo, no inventes cifras. Escríbelo en lenguaje sencillo para el administrador de la finca, con tablas claras.</pre></div>
   <div class="row"><button class="copy" data-target="p2">Copiar prompt</button></div>
   <h3>Prompt B · Agregar un pesaje nuevo</h3>
-  <div class="prompt"><pre id="p2b">Adjunto los pesajes nuevos del [fecha] (Número, Peso en kg, Observación). Antes de agregarlos, revísalos y dime:
+  <div class="prompt"><pre id="p2b">Adjunto los pesajes nuevos del [fecha] (Fecha de pesaje, Número, Peso en kg, Observación). Antes de agregarlos, revísalos y dime:
 1. Qué animales pesados NO aparecen en la hoja «Nacimientos» (no tienen fecha de nacimiento ni raza) y cuáles números parecen mal escritos (no existen o están repetidos). Para esos, pídeme la fecha de nacimiento y la raza antes de calcularlos.
 2. Qué animales de «Nacimientos» debían pesarse y no aparecen en este pesaje.
 3. Qué pesos parecen errores de digitación frente al pesaje anterior (ganancia o pérdida de más de 1.500 g/día, o un peso imposible para su edad).
