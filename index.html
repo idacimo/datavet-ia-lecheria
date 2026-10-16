@@ -64,7 +64,7 @@ footer{max-width:760px;margin:0 auto;padding:0 16px 40px;font-size:.88rem;color:
     <h1>Decisiones ganaderas basadas en datos e inteligencia artificial</h1>
     <p>Los prompts de la charla, listos para copiar y usar con los datos de su finca.</p>
     <nav aria-label="Secciones">
-      <a href="#teoria">0 · Teoría</a><a href="#c1">1 · Colillas</a><a href="#c2">2 · Levante</a><a href="#c3">3 · Rentabilidad</a><a href="#app">App reemplazos</a><a href="#roi">App ROI ordeño</a>
+      <a href="#teoria">0 · Teoría</a><a href="#c1">1 · Colillas</a><a href="#c2">2 · Levante</a><a href="#c3">3 · Genómica y rentabilidad</a><a href="#app">App reemplazos</a><a href="#roi">App ROI ordeño</a>
     </nav>
   </div>
 </header>
@@ -214,35 +214,37 @@ Al final, genera el Excel actualizado con toda la información, las gráficas de
 <section id="c3">
   <span id="c4"></span>
   <span class="tag gen">Caso 3 · Claude</span>
-  <h2>Rentabilidad vaca por vaca: de la más rentable a la menos rentable</h2>
-  <p class="lead">Se juntan todos los datos de la finca (producción, calidad, reproducción, sanidad y alimentación) y Claude calcula cuánto deja cada vaca, para tomar decisiones de descarte, tratamiento y alimentación.</p>
+  <h2>Genómica en campo: ¿se cumple lo que promete y cuánto vale?</h2>
+  <p class="lead">Ejemplo basado en el análisis hecho con Claude para fincas Holstein (El Cepo, La Gloria y La Esmeralda): se cruzan la genómica, el control lechero y las acciones veterinarias para ver si las vacas de mejor genética de verdad producen más sólidos y se enferman menos, y cuánta plata representa.</p>
   <ol class="steps">
-    <li>Reúna los archivos: control lechero, eventos reproductivos, tratamientos y sanidad, plan de concentrado y, si los tiene, los resultados de genómica. Tenga a mano el precio del litro y la tabla de bonificaciones de la empresa compradora.</li>
-    <li>Entre a <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>, adjunte los archivos y pegue el prompt.</li>
+    <li>Reúna tres archivos en Excel o CSV: resultados genómicos, control lechero y acciones veterinarias (tratamientos). Pida al laboratorio la genómica en Excel, no solo en PDF.</li>
+    <li>Entre a <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>, adjunte los archivos y pegue el prompt A. Con el resultado, pegue el prompt B.</li>
   </ol>
-  <div class="prompt"><pre id="p4">Eres un analista de datos experto en economía de la lechería especializada en Colombia.
+  <h3>Prompt A · ¿La genómica se cumple en mi finca?</h3>
+  <div class="prompt"><pre id="p4">Eres un analista de datos experto en genética y economía de ganado Holstein en Colombia.
 
-Adjunto los registros de mi finca [nombre]: control lechero (producción, grasa, proteína, RCS, días en leche, número de partos), eventos reproductivos (fecha de parto, servicios, preñez, días abiertos), sanidad (mastitis, tratamientos, días de leche descartada) y alimentación (kg de concentrado por vaca al día) y, si la tengo, genómica (índice genético de cada vaca o novilla).
+Adjunto tres archivos de mi finca [nombre]:
+1. Resultados genómicos de las hembras (laboratorio / CDCB): índices como leche, grasa, proteína, ubre (UDC), patas (FLC), células somáticas (SCS), salud, inmunidad y el índice total de la finca.
+2. Control lechero: producción, % grasa, % proteína, días en leche (DEL), número de partos y score lineal o RCS de cada vaca en cada control.
+3. Acciones veterinarias: fecha, vaca, diagnóstico (mastitis, cojera, metritis, diarrea, neumonía) y tratamiento.
 
-Datos económicos:
-- Precio base del litro: [$ ___]; bonificaciones y descuentos por grasa, proteína y RCS según esta tabla: [pegar tabla].
-- Precio del concentrado: [$ ___ por kg]. Costo de pasto o forraje por vaca al día: [$ ___].
-- Costo de cada día abierto por encima de 120 días: [$ ___] (si no lo sé, propón un valor y explícalo).
+Antes de calcular, une los tres archivos por el número de la vaca, dime cuántas vacas cruzan en cada combinación y qué datos faltan o se ven inconsistentes.
 
-Para CADA vaca:
-1. Ingreso estimado por leche en los últimos 12 meses (o por lactancia), con el precio ajustado por su calidad.
-2. Costos directos: concentrado, forraje, tratamientos y leche descartada.
-3. Margen sobre alimentación y margen neto estimado por día.
-4. Penalidades: días abiertos en exceso, RCS alto y mastitis repetida.
-
-Luego:
-5. Ordena las vacas de la más rentable a la menos rentable y clasifícalas en A (top 25 %), B, C y D (25 % inferior).
-6. Para cada grupo, la decisión recomendada: mantener, ajustar alimentación, tratar, revisar reproducción o descartar. Justifica las vacas D una por una.
-7. Muestra el impacto en el margen de la finca si se reemplazan las vacas D.
-8. Reemplazos: según cuántas vacas salen al año, calcula cuántas terneras debo criar al año. Propón de qué vacas dejar las hembras de reemplazo (las más rentables y, si hay genómica, las de mejor índice) y a cuáles inseminar con semen de carne.
-
-Antes de calcular, revisa los datos, dime qué falta o se ve inconsistente y escribe los supuestos que usarás. Entrega tablas y una gráfica del margen por vaca.</pre></div>
+Luego responde: ¿la genómica se está cumpliendo en mi finca?
+1. Divide las vacas en tres grupos (alto, medio y bajo) para cada índice genómico.
+2. Control lechero: compara % grasa, % proteína, producción y score lineal entre grupos, separando primer parto y multíparas y por fase de lactancia (0-60, 61-120, 121-200, 201-305 DEL). Usa como problema de ubre score lineal ≥ 3 en primer parto y ≥ 4 en multíparas.
+3. Acciones veterinarias: compara el porcentaje de vacas con mastitis clínica, cojera y metritis entre los grupos de salud, ubre y patas. Dime cuántas veces más riesgo tiene el grupo bajo.
+4. Por toro (padre): desempeño real de las hijas en el control lechero y en enfermedades.
+5. Conclusiones en lenguaje sencillo: qué índices sí predicen y cuáles no, con tablas y gráficas.</pre></div>
   <div class="row"><button class="copy" data-target="p4">Copiar prompt</button></div>
+  <h3>Prompt B · Rentabilidad por vaca y reemplazos</h3>
+  <div class="prompt"><pre id="p4b">Con el análisis anterior, calcula cuánto vale la genómica en mi finca, en pesos colombianos:
+1. Para cada vaca: ingreso por leche y sólidos (precio base [$ ___] por litro, pago por grasa y proteína según mi colilla), costo de concentrado [$ ___ por kg] y costo de sus eventos de salud (mastitis [$ ___ por caso], cojera [$ ___ por caso]).
+2. Ordena las vacas de la más rentable a la menos rentable y muestra si las de genómica alta son las que más dejan.
+3. Calcula el ahorro y el ingreso adicional al año si el hato tuviera la genómica del grupo alto: menos mastitis, menos cojeras y más grasa y proteína.
+4. Reemplazos: según cuántas vacas salen al año, ¿cuántas terneras debo criar? ¿De qué vacas dejar las hembras y a cuáles inseminar con semen de carne? ¿Qué toros usar y cuáles evitar según el desempeño real de sus hijas?
+Escribe los supuestos que uses y entrega tablas y un resumen de una página para el propietario.</pre></div>
+  <div class="row"><button class="copy" data-target="p4b">Copiar prompt</button></div>
 </section>
 
 <section id="app">
