@@ -9,7 +9,7 @@ Página de apoyo de la charla **Decisiones ganaderas basadas en datos e IA**: lo
 | `#teoria` | Paso 0 · Cuaderno «Inteligencia artificial aplicada en la ganadería» |
 | `#c1` | Caso 1 · Gemini Notebook: las colillas de leche (¿estoy recibiendo el mejor precio?) |
 | `#c2` | Caso 2 · Gemini o Copilot: levante de terneras, último pesaje, planilla a mano y tablero |
-| `#c3` | Caso 3 · Claude: rentabilidad por vaca (genómica + control lechero + acciones veterinarias) y reemplazos (`#c4` redirige aquí) |
+| `#c3` | Caso 3 · Claude: rentabilidad por vaca (genómica + control lechero + acciones veterinarias + costos) y reemplazos (`#c4` redirige aquí) |
 | `#app` | Calculadora de reemplazos |
 | `#roi` | Simulador ROI de la automatización del ordeño |
 | — | La app ROI vive en su propio repositorio: https://idacimo.github.io/Roi-automatizacion/ |
