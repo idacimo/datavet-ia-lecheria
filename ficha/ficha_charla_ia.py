@@ -107,7 +107,7 @@ STEPS = [
     ("2", "Gemini · Copilot", TEAL, white, "Levante de terneras",
      [("sino", "¿Pesa sus terneras periódicamente?"),
       ("q", "Mi meta de ganancia diaria:"), ("linea", "g/día")], SITE + "#c2"),
-    ("3", "Claude", AMBER, NAVY, "Genómica en campo",
+    ("3", "Claude", AMBER, NAVY, "Rentabilidad por vaca",
      [("q", "¿Lleva estos registros?"),
       ("tabla", ["Control lechero", "Producción", "Tratamientos", "Genómica"]),
       ("campo", ("Crío al año:", "terneras")),
