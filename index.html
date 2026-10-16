@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Decisiones ganaderas con datos e IA | Datavet</title>
-<meta name="description" content="Los prompts de la charla Decisiones ganaderas basadas en datos e IA: Gemini Notebook, Gemini y Claude aplicados a la lechería especializada. Cópielos y úselos en su finca.">
+<meta name="description" content="Los prompts de la charla Decisiones ganaderas basadas en datos e IA: Gemini Notebook, Gemini, Copilot y Claude aplicados a la lechería especializada. Cópielos y úselos en su finca.">
 <meta name="author" content="Iván Darío Cifuentes Moreno · Datavet">
 <meta name="theme-color" content="#07193F">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CO">
 <meta property="og:site_name" content="Datavet">
 <meta property="og:title" content="Decisiones ganaderas basadas en datos e IA | Datavet">
-<meta property="og:description" content="Cuatro casos de inteligencia artificial en lechería, con los prompts listos para copiar.">
+<meta property="og:description" content="Tres casos de inteligencia artificial en lechería, con los prompts listos para copiar.">
 <meta property="og:image" content="https://idacimo.github.io/datavet-ia-lecheria/assets/og-image.png">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -64,7 +64,7 @@ footer{max-width:760px;margin:0 auto;padding:0 16px 40px;font-size:.88rem;color:
     <h1>Decisiones ganaderas basadas en datos e inteligencia artificial</h1>
     <p>Los prompts de la charla, listos para copiar y usar con los datos de su finca.</p>
     <nav aria-label="Secciones">
-      <a href="#teoria">0 · Teoría</a><a href="#c1">1 · Colillas</a><a href="#c2">2 · Levante</a><a href="#c3">3 · Genómica</a><a href="#c4">4 · Rentabilidad</a><a href="#app">App reemplazos</a><a href="#roi">App ROI ordeño</a>
+      <a href="#teoria">0 · Teoría</a><a href="#c1">1 · Colillas</a><a href="#c2">2 · Levante</a><a href="#c3">3 · Rentabilidad</a><a href="#app">App reemplazos</a><a href="#roi">App ROI ordeño</a>
     </nav>
   </div>
 </header>
@@ -146,12 +146,12 @@ Ilustraciones de finca lechera, vacas Holstein, números grandes, poco texto. Us
 
 <!-- ================= CASO 2 ================= -->
 <section id="c2">
-  <span class="tag gem">Caso 2 · Gemini</span>
+  <span class="tag gem">Caso 2 · Gemini o Copilot</span>
   <h2>Levante de terneras: ¿van creciendo al ritmo que deben?</h2>
-  <p class="lead">Con una hoja de pesajes sencilla, Gemini calcula la ganancia diaria de cada animal, la compara con la curva de peso ideal de su raza, le dice cuáles tuvieron problemas en el último pesaje y le entrega todo en Excel. También lee la planilla escrita a mano.</p>
+  <p class="lead">Con una hoja de pesajes sencilla, Gemini calcula la ganancia diaria de cada animal, la compara con la curva de peso ideal de su raza, le dice cuáles tuvieron problemas en el último pesaje y le entrega todo en Excel con gráficas. También lee la planilla escrita a mano. Funciona igual en Gemini o en Copilot dentro de Excel.</p>
   <ol class="steps">
     <li>Prepare un Excel con dos hojas. <strong>Pesajes:</strong> Fecha de pesaje, Número, Peso (kg), Observación, en el orden en que se pesa. <strong>Nacimientos:</strong> Número, Fecha de nacimiento, Raza (HO, F1, F2, JE).</li>
-    <li>Abra <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a>, adjunte el archivo y pegue el prompt A. Las curvas de peso ideal van dentro del prompt: son valores de referencia, no hacen falta en el Excel. Si usa otras curvas, cambie esos números.</li>
+    <li><strong>Con Gemini:</strong> abra <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a>, adjunte el archivo y pegue el prompt A. <strong>Con Copilot:</strong> abra el archivo en Excel (Microsoft 365, guardado en OneDrive), abra el panel de Copilot y pegue el prompt A; Copilot trabaja directamente sobre su libro. Las curvas de peso ideal van dentro del prompt: son valores de referencia, no hacen falta en el Excel. Si usa otras curvas, cambie esos números.</li>
     <li>Cada vez que pese, en el mismo chat, use <strong>una</strong> de las dos opciones según cómo anotó el pesaje: si lo pasó a Excel, adjunte el archivo y pegue el <strong>prompt B</strong>; si quedó en la planilla escrita a mano, tómele foto y pegue el <strong>prompt C</strong>.</li>
   </ol>
   <h3>Prompt A · Informe del levante y el último pesaje</h3>
@@ -204,43 +204,25 @@ Al final, genera el Excel actualizado con toda la información, las gráficas de
 5. Genera el Excel actualizado con toda la información, las gráficas dentro del Excel (gráficas nativas de Excel, no imágenes), una hoja con la planilla transcrita y una hoja «Pendientes por verificar».</pre></div>
   <div class="row"><button class="copy" data-target="p2c">Copiar prompt</button></div>
   <p class="note">¿Cuántas terneras y novillas necesita su finca para sostener el hato? Use la calculadora de reemplazos: <a href="https://idacimo.github.io/Reemplazos_Fincas_Lecheras/" target="_blank" rel="noopener">abrir la app</a>.</p>
+  <h3>Prompt D · Tablero interactivo (Copilot en Excel)</h3>
+  <p>Con el libro ya analizado, en el panel de Copilot:</p>
+  <div class="prompt"><pre id="p2d">Crea en este libro una hoja «Tablero» interactiva con todos los pesajes: una segmentación de tiempo para escoger el rango de fechas y una segmentación para escoger la raza (HO, F1, F2, JE). Que al cambiar los filtros se actualicen: el número de animales, la GDP promedio, el % del ideal promedio, la gráfica de peso contra edad con las curvas ideales y la lista de animales con problemas en el último pesaje. Usa tablas dinámicas y gráficas nativas de Excel.</pre></div>
+  <div class="row"><button class="copy" data-target="p2d">Copiar prompt</button></div>
 </section>
 
 <!-- ================= CASO 3 ================= -->
 <section id="c3">
-  <span class="tag gen">Caso 3 · Claude</span>
-  <h2>Genómica: decidir con datos cuáles terneras criar</h2>
-  <p class="lead">Ejemplo basado en el proyecto de genómica en las fincas El Cepo, La Gloria y La Esmeralda. Con los resultados de la prueba, la IA ordena las hembras y propone qué hacer con cada grupo.</p>
-  <ol class="steps">
-    <li>Pida al laboratorio los resultados en Excel o CSV (no solo en PDF).</li>
-    <li>Entre a <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>, adjunte el archivo y pegue el prompt. También funciona en Gemini o ChatGPT.</li>
-  </ol>
-  <div class="prompt"><pre id="p3">Eres un asesor en mejoramiento genético de ganado de leche en trópico alto colombiano.
-
-Adjunto los resultados de la prueba genómica de las terneras y novillas de mi finca. Las columnas incluyen el índice de selección [TPI / NM$ / el que use el laboratorio] y los valores genéticos (PTA) de leche, grasa, proteína, vida productiva, fertilidad de las hijas (DPR), células somáticas (SCS) y tipo, más los genotipos de kappa-caseína y beta-caseína (A2) si están disponibles.
-
-1. Ordena todas las hembras de mayor a menor según el índice y divídelas en cuatro grupos de 25 %.
-2. Propón una decisión para cada grupo: 25 % superior = madres del futuro del hato (semen sexado de toros élite); grupos intermedios = semen convencional; 25 % inferior = semen de raza de carne o venta como novilla.
-3. Compara el promedio genético del hato contra los mejores animales y señala las 2 características más débiles del hato.
-4. Recomienda qué características debe tener el toro para corregir esas debilidades, sin descuidar fertilidad ni salud de ubre.
-5. Calcula cuántas terneras de reemplazo necesitaría realmente con esta estrategia y cuánto dinero se ahorraría en levante al no criar el grupo inferior.
-
-Presenta tablas claras y una explicación corta, en lenguaje de productor. Si falta algún dato, pregúntamelo antes de suponerlo.</pre></div>
-  <div class="row"><button class="copy" data-target="p3">Copiar prompt</button></div>
-</section>
-
-<!-- ================= CASO 4 ================= -->
-<section id="c4">
-  <span class="tag cla">Caso 4 · Claude</span>
+  <span id="c4"></span>
+  <span class="tag cla">Caso 3 · Claude</span>
   <h2>Rentabilidad vaca por vaca: de la más rentable a la menos rentable</h2>
   <p class="lead">Se juntan todos los datos de la finca (producción, calidad, reproducción, sanidad y alimentación) y Claude calcula cuánto deja cada vaca, para tomar decisiones de descarte, tratamiento y alimentación.</p>
   <ol class="steps">
-    <li>Reúna los archivos: control lechero, eventos reproductivos, tratamientos y sanidad, y plan de concentrado. Tenga a mano el precio del litro y la tabla de bonificaciones de la empresa compradora.</li>
+    <li>Reúna los archivos: control lechero, eventos reproductivos, tratamientos y sanidad, plan de concentrado y, si los tiene, los resultados de genómica. Tenga a mano el precio del litro y la tabla de bonificaciones de la empresa compradora.</li>
     <li>Entre a <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>, adjunte los archivos y pegue el prompt.</li>
   </ol>
   <div class="prompt"><pre id="p4">Eres un analista de datos experto en economía de la lechería especializada en Colombia.
 
-Adjunto los registros de mi finca [nombre]: control lechero (producción, grasa, proteína, RCS, días en leche, número de partos), eventos reproductivos (fecha de parto, servicios, preñez, días abiertos), sanidad (mastitis, tratamientos, días de leche descartada) y alimentación (kg de concentrado por vaca al día).
+Adjunto los registros de mi finca [nombre]: control lechero (producción, grasa, proteína, RCS, días en leche, número de partos), eventos reproductivos (fecha de parto, servicios, preñez, días abiertos), sanidad (mastitis, tratamientos, días de leche descartada) y alimentación (kg de concentrado por vaca al día) y, si la tengo, genómica (índice genético de cada vaca o novilla).
 
 Datos económicos:
 - Precio base del litro: [$ ___]; bonificaciones y descuentos por grasa, proteína y RCS según esta tabla: [pegar tabla].
@@ -257,6 +239,7 @@ Luego:
 5. Ordena las vacas de la más rentable a la menos rentable y clasifícalas en A (top 25 %), B, C y D (25 % inferior).
 6. Para cada grupo, la decisión recomendada: mantener, ajustar alimentación, tratar, revisar reproducción o descartar. Justifica las vacas D una por una.
 7. Muestra el impacto en el margen de la finca si se reemplazan las vacas D.
+8. Reemplazos: según cuántas vacas salen al año, calcula cuántas terneras debo criar al año. Propón de qué vacas dejar las hembras de reemplazo (las más rentables y, si hay genómica, las de mejor índice) y a cuáles inseminar con semen de carne.
 
 Antes de calcular, revisa los datos, dime qué falta o se ve inconsistente y escribe los supuestos que usarás. Entrega tablas y una gráfica del margen por vaca.</pre></div>
   <div class="row"><button class="copy" data-target="p4">Copiar prompt</button></div>

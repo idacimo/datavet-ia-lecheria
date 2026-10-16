@@ -104,22 +104,20 @@ STEPS = [
     ("1", "Gemini Notebook", GREEN, white, "Las colillas de leche",
      [("q", "¿Estoy obteniendo el mejor precio por mi leche o puede mejorar?"),
       ("ops", ["Sí", "No sé", "Puede mejorar"])], SITE + "#c1"),
-    ("2", "Gemini", TEAL, white, "Levante de terneras",
+    ("2", "Gemini · Copilot", TEAL, white, "Levante de terneras",
      [("sino", "¿Pesa sus terneras periódicamente?"),
       ("q", "Mi meta de ganancia diaria:"), ("linea", "g/día")], SITE + "#c2"),
-    ("3", "Claude", AMBER, NAVY, "Qué terneras criar",
-     [("sino", "¿Está haciendo genómica?"),
-      ("q", "Terneras que crío al año:"), ("linea", "terneras")], SITE + "#c3"),
-    ("4", "Claude", LGREEN, NAVY, "Rentabilidad por vaca",
+    ("3", "Claude", LGREEN, NAVY, "Rentabilidad por vaca",
      [("q", "¿Lleva estos registros?"),
-      ("tabla", ["Control lechero", "Producción", "Tratamientos"]),
-      ("q", "Mi vaca más rentable es:"), ("linea", "")], SITE + "#c4"),
+      ("tabla", ["Control lechero", "Producción", "Tratamientos", "Genómica"]),
+      ("campo", ("Crío al año:", "terneras")),
+      ("campo", ("Vaca más rentable:", ""))], SITE + "#c3"),
 ]
 QRS = {s[6]: qr_img(s[6]) for s in STEPS}
 
 BW = 44 * mm                         # columna Colanta + título
 X0 = BW + 3 * mm
-CW = (W - PAD - X0) / 5
+CW = (W - PAD - X0) / len(STEPS)
 QS = 21 * mm
 TAG_H = 5 * mm
 FOOT = 8 * mm                        # franja inferior con Datavet
@@ -153,7 +151,7 @@ def front(c, y0, mono=False):
     c.setFillColor(K); c.setFont("Jost-B", TS)
     for k, line in enumerate(("Decisiones ganaderas", "basadas en", "datos e IA")):
         c.drawString(PAD, ty - k * TS * 1.15, line)
-    para(c, "Cuatro casos de inteligencia artificial en lechería especializada.",
+    para(c, "Tres casos de inteligencia artificial en lechería especializada.",
          PAD, ty - 2 * TS * 1.15 - 3 * mm, BW - PAD - 2 * mm, 7.4, "Jost", K80, 8.8)
     iy = bot + 15 * mm
     c.setFont("Jost-B", 7.6); c.setFillColor(K); c.drawString(PAD, iy, "En cada paso:")
@@ -213,6 +211,15 @@ def front(c, y0, mono=False):
                     c.setFont("Jost", 6.9); c.setFillColor(K); c.drawString(x, y + 0.5 * mm, r)
                     box(c, sx - 0.2 * mm, y, 2.6 * mm); box(c, sx + 5.8 * mm, y, 2.6 * mm)
                 y -= 1 * mm
+            elif kind == "campo":
+                lab, unit = val
+                y -= 4.6 * mm
+                c.setFont("Jost", 7.2); c.setFillColor(K80); c.drawString(x, y + 0.6 * mm, lab)
+                lx = x + c.stringWidth(lab, "Jost", 7.2) + 1.2 * mm
+                ux = x + inner - (c.stringWidth(unit, "Jost", 7) + 1 * mm if unit else 0)
+                c.setStrokeColor(K); c.line(lx, y, ux - 0.8 * mm, y)
+                if unit:
+                    c.setFont("Jost", 7); c.setFillColor(K); c.drawString(ux, y + 0.6 * mm, unit)
             elif kind == "linea":
                 y -= 4.2 * mm
                 if val:
