@@ -64,7 +64,7 @@ footer{max-width:760px;margin:0 auto;padding:0 16px 40px;font-size:.88rem;color:
     <h1>Decisiones ganaderas basadas en datos e inteligencia artificial</h1>
     <p>Los prompts de la charla, listos para copiar y usar con los datos de su finca.</p>
     <nav aria-label="Secciones">
-      <a href="#teoria">0 · Teoría</a><a href="#c1">1 · Colillas</a><a href="#c2">2 · Levante</a><a href="#c3">3 · Rentabilidad</a><a href="#app">App reemplazos</a><a href="#roi">App ROI ordeño</a>
+      <a href="#teoria">0 · Teoría</a><a href="#c1">1 · Comprobantes</a><a href="#c2">2 · Levante</a><a href="#c3">3 · Rentabilidad</a><a href="#app">App reemplazos</a><a href="#roi">App ROI ordeño</a>
     </nav>
   </div>
 </header>
@@ -84,16 +84,16 @@ footer{max-width:760px;margin:0 auto;padding:0 16px 40px;font-size:.88rem;color:
 <!-- ================= CASO 1 ================= -->
 <section id="c1">
   <span class="tag">Caso 1 · Gemini Notebook</span>
-  <h2>Las colillas de leche: ¿estoy obteniendo el mejor precio por mi leche o puede mejorar?</h2>
-  <p class="lead">Gemini Notebook (antes NotebookLM) responde <strong>solo</strong> con los documentos que usted le sube. Con las colillas semanales que envía Colanta, le muestra semana a semana de dónde sale el precio de su litro, dónde está perdiendo plata y qué deben cuidar los trabajadores.</p>
+  <h2>Los comprobantes de pago de la leche: ¿estoy obteniendo el mejor precio por mi leche o puede mejorar?</h2>
+  <p class="lead">Gemini Notebook (antes NotebookLM) responde <strong>solo</strong> con los documentos que usted le sube. Con los comprobantes de pago semanales que envía Colanta, le muestra semana a semana de dónde sale el precio de su litro, dónde está perdiendo plata y qué deben cuidar los trabajadores.</p>
   <ol class="steps">
     <li>Entre a <a href="https://notebooklm.google.com" target="_blank" rel="noopener">Gemini Notebook</a> con su cuenta de Google y cree un cuaderno nuevo.</li>
-    <li>Suba como fuentes las colillas semanales de pago de la leche, tal como llegan de Colanta (PDF). Con 3 meses (unas 13 semanas) ya se ven tendencias.</li>
+    <li>Suba como fuentes los comprobantes de pago semanales de la leche, tal como llegan de Colanta (PDF). Con 3 meses (unas 13 semanas) ya se ven tendencias.</li>
     <li>Pegue el prompt A en el chat y después el B. Para el prompt C, abra el panel <strong>Studio</strong>, elija <strong>Infografía</strong>, toque el lápiz para personalizarla y pegue el texto.</li>
   </ol>
 
   <h3>Prompt A · ¿De dónde sale el precio de mi litro?</h3>
-  <div class="prompt"><pre id="p1a">Eres un asesor experto en calidad de leche y en el sistema de pago de leche al productor en Colombia. Usa ÚNICAMENTE las fuentes de este cuaderno: las colillas semanales de liquidación de leche de mi finca.
+  <div class="prompt"><pre id="p1a">Eres un asesor experto en calidad de leche y en el sistema de pago de leche al productor en Colombia. Usa ÚNICAMENTE las fuentes de este cuaderno: los comprobantes de pago semanales de liquidación de leche de mi finca.
 
 1. Arma una tabla semana a semana con: litros entregados, precio por litro, precio pagado menos flete, proteína y grasa (en % y en gramos por litro), recuento de células somáticas (RCS), UFC (bacterias), temperatura promedio y el valor de cada bonificación (recuento bacterial, frío, hato libre, capitalización, células somáticas y las demás que aparezcan).
 2. Dime en qué semanas recibí el mejor y el peor precio por litro y qué explica la diferencia, componente por componente.
@@ -101,47 +101,47 @@ footer{max-width:760px;margin:0 auto;padding:0 16px 40px;font-size:.88rem;color:
 4. Muestra la tendencia del período: ¿el precio sube, baja o se mantiene? ¿Cuál componente está moviendo el precio?
 5. Calcula cuánto dinero dejé de recibir en el período por cada componente que bajó frente a mi mejor semana.
 
-Presenta los números en tablas, cita la semana de donde sale cada dato y, si algo no está en las colillas, dilo en lugar de inventarlo.</pre></div>
+Presenta los números en tablas, cita la semana de donde sale cada dato y, si algo no está en los comprobantes de pago, dilo en lugar de inventarlo.</pre></div>
   <div class="row"><button class="copy" data-target="p1a">Copiar prompt</button></div>
 
   <h3>Prompt B · ¿Estoy obteniendo el mejor precio o puede mejorar?</h3>
   <div class="prompt"><pre id="p1b">Con el análisis anterior, responde: ¿estoy obteniendo el mejor precio por mi leche o puede mejorar?
 
 1. Ordena las oportunidades de mayor a menor plata al año (proyecta el período a 52 semanas).
-2. Para las 3 primeras, explica en lenguaje sencillo qué tendría que cambiar en la finca (alimentación, rutina de ordeño, limpieza del equipo, enfriamiento, salud de ubre) y en cuántas semanas se vería en la colilla.
-3. Dime qué 3 datos debo mirar cada semana en la colilla para saber si voy mejorando, y cuál es la meta de cada uno.
+2. Para las 3 primeras, explica en lenguaje sencillo qué tendría que cambiar en la finca (alimentación, rutina de ordeño, limpieza del equipo, enfriamiento, salud de ubre) y en cuántas semanas se vería en el comprobante de pago.
+3. Dime qué 3 datos debo mirar cada semana en el comprobante de pago para saber si voy mejorando, y cuál es la meta de cada uno.
 
 Entrégalo como un plan corto de una página, con una meta medible para cada oportunidad.</pre></div>
   <div class="row"><button class="copy" data-target="p1b">Copiar prompt</button></div>
 
   <h3>Prompt C · Infografía para los trabajadores: calidad de leche</h3>
   <p>Para el panel Studio → Infografía → orientación horizontal → personalizar. Imprímala o compártala por WhatsApp con el personal del ordeño.</p>
-  <div class="prompt"><pre id="p1c">Infografía horizontal dirigida a los trabajadores de la finca (ordeñadores), explicando cada concepto en palabras sencillas y enfocada en calidad de leche, con las colillas de leche de Colanta de las últimas semanas.
+  <div class="prompt"><pre id="p1c">Infografía horizontal dirigida a los trabajadores de la finca (ordeñadores), explicando cada concepto en palabras sencillas y enfocada en calidad de leche, con los comprobantes de pago de la leche de Colanta de las últimas semanas.
 
-Título: «Calidad de leche en la finca [nombre]: lo que dice la colilla».
+Título: «Calidad de leche en la finca [nombre]: lo que dice el comprobante de pago».
 Divídela en dos lados:
 - Izquierda, en verde, «Nuestros logros»: cómo nos fue en UFC (bacterias) y en la bonificación por recuento bacterial y por frío; RCS (células somáticas) frente a la meta de 200 y la bonificación de células somáticas; y el mes con mejor promedio de litros por día.
 - Derecha, en rojo, «Lo que podemos mejorar»: las semanas en que el RCS o las UFC se salieron de la meta y cuánto bajó el precio por litro entre la mejor y la peor semana, y por qué.
 Abajo, una franja con 4 acciones del ordeño, cada una con su ícono: despunte y presellado, secar cada pezón con toalla individual, sellado después de ordeñar, y lavar el equipo y enfriar la leche rápido.
 Pie: «[nombre de la finca o de su asesor]».
 
-Ilustraciones de finca lechera, vacas Holstein, números grandes, poco texto. Usa solo cifras que estén en las colillas.</pre></div>
+Ilustraciones de finca lechera, vacas Holstein, números grandes, poco texto. Usa solo cifras que estén en los comprobantes de pago.</pre></div>
   <div class="row"><button class="copy" data-target="p1c">Copiar prompt</button></div>
 
   <h3>Prompt D · Todo en Excel</h3>
-  <p>En el mismo chat, justo después del prompt A (y del B, si lo usó). Gemini Notebook arma el archivo con todo lo que ya respondió y usted lo descarga. Cuando llegue una colilla nueva, súbala como fuente y repita A y D.</p>
+  <p>En el mismo chat, justo después del prompt A (y del B, si lo usó). Gemini Notebook arma el archivo con todo lo que ya respondió y usted lo descarga. Cuando llegue un comprobante de pago nuevo, súbalo como fuente y repita A y D.</p>
   <div class="prompt"><pre id="p1e">Genera toda la información que ya entregaste en un archivo de Excel, con las gráficas dentro del Excel (gráficas nativas de Excel, no imágenes).</pre></div>
   <div class="row"><button class="copy" data-target="p1e">Copiar prompt</button></div>
 
-  <h3>Otros usos del cuaderno de las colillas</h3>
-  <p>Con las mismas colillas en el cuaderno, pegue cualquiera de estas preguntas en el chat:</p>
-  <div class="prompt"><pre id="p1f">Explícame, renglón por renglón y en palabras sencillas, qué significa cada concepto de la última colilla: precio base, pago por proteína y grasa, cada bonificación, flete, capitalización, fondo de estabilización, retención y cartera. Dime cuáles dependen de lo que hacemos en la finca y cuáles no.</pre></div>
+  <h3>Otros usos del cuaderno de los comprobantes de pago</h3>
+  <p>Con los mismos comprobantes de pago en el cuaderno, pegue cualquiera de estas preguntas en el chat:</p>
+  <div class="prompt"><pre id="p1f">Explícame, renglón por renglón y en palabras sencillas, qué significa cada concepto del último comprobante de pago: precio base, pago por proteína y grasa, cada bonificación, flete, capitalización, fondo de estabilización, retención y cartera. Dime cuáles dependen de lo que hacemos en la finca y cuáles no.</pre></div>
   <div class="row"><button class="copy" data-target="p1f">Copiar prompt</button></div>
   <div class="prompt"><pre id="p1g">¿Cuánto me pagaron en total en el período y cuánto me descontaron? Separa los descuentos en: flete, capitalización, fondo de estabilización, retención en la fuente y cartera (compras en Agrocolanta). ¿Qué porcentaje de lo que produjo la leche se fue en descuentos y cómo va el saldo de mis facturas pendientes?</pre></div>
   <div class="row"><button class="copy" data-target="p1g">Copiar prompt</button></div>
   <div class="prompt"><pre id="p1h">Compara semana a semana los litros entregados, la temperatura de la leche y el recuento bacteriano (UFC). ¿Hay días o semanas en que la temperatura subió o bajaron los litros? Dime qué semanas debo revisar con el personal y por qué.</pre></div>
   <div class="row"><button class="copy" data-target="p1h">Copiar prompt</button></div>
-  <p class="note">En el panel Studio también puede pedir un <strong>resumen en audio</strong> de las colillas para escucharlo en el carro, o un <strong>cuestionario</strong> para el personal sobre calidad de leche.</p>
+  <p class="note">En el panel Studio también puede pedir un <strong>resumen en audio</strong> de los comprobantes de pago para escucharlo en el carro, o un <strong>cuestionario</strong> para el personal sobre calidad de leche.</p>
 </section>
 
 <!-- ================= CASO 2 ================= -->

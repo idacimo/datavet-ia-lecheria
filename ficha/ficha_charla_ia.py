@@ -101,7 +101,7 @@ STEPS = [
     ("0", "Teoría", NAVY, white, "La IA en 5 minutos",
      [("q", "¿Qué IA usa hoy?"),
       ("ops", ["Ninguna", "ChatGPT", "Gemini", "Claude", "Copilot", "Otra", "Gemini Notebook"])], SITE + "#teoria"),
-    ("1", "Gemini Notebook", GREEN, white, "Las colillas de leche",
+    ("1", "Gemini Notebook", GREEN, white, "Comprobantes de pago de leche",
      [("q", "¿Estoy obteniendo el mejor precio por mi leche o puede mejorar?"),
       ("ops", ["Sí", "No sé", "Puede mejorar"])], SITE + "#c1"),
     ("2", "Gemini · Copilot", TEAL, white, "Levante de terneras",
